@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Modules from "./components/modules/Modules";
-import ModulePage from "./components/modules/ModulePage"; // New page to handle dynamic modules
+import ModulePage from "./components/modules/Modulepage";
 
 function App() {
   return (
