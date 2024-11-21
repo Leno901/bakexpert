@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./styles.css"; // Add this file for styles
 
+// 10x10 crossword grid
 const crosswordData = [
-  ["S", "M", "A", "L", "L", "", "", "", ""],
-  ["", "", "", "", "F", "", "", "", ""],
-  ["", "", "", "", "R", "A", "N", "C", "E"],
-  ["P", "A", "S", "T", "R", "Y", "", "", ""],
-  ["", "", "", "", "", "", "", "", ""],
-  ["S", "W", "E", "E", "T", "", "", "", ""],
-  ["", "", "", "", "", "", "", "", ""],
-  ["D", "E", "S", "S", "E", "R", "T", "", ""],
-  ["B", "A", "K", "E", "", "", "", "", ""],
+  ["S", "M", "A", "L", "L", "", "", "", "", ""],
+  ["", "", "", "", "F", "", "", "", "", ""],
+  ["", "", "", "", "R", "A", "N", "C", "E", ""],
+  ["P", "A", "S", "T", "R", "Y", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["S", "W", "E", "E", "T", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["D", "E", "S", "S", "E", "R", "T", "", "", ""],
+  ["B", "A", "K", "E", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
 ];
 
 const wordsToFind = [
@@ -117,37 +119,38 @@ function Crossword() {
   return (
     <div className="crossword-container">
       <h1>Crossword Hunt</h1>
-      <div className="grid">
-        {crosswordData.map((row, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {row.map((letter, colIndex) => (
-              <div
-                key={`${rowIndex}-${colIndex}`}
-                className={`cell ${letter ? "filled" : ""} ${getCellClass(
-                  rowIndex,
-                  colIndex
-                )}`}
-                onClick={() => handleCellClick(rowIndex, colIndex)}
-              >
-                {letter}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div className="word-list">
-        <h2>Words to Find:</h2>
-        <ul>
-          {wordsToFind.map((word) => (
-            <li
-              key={word.word}
-              className={foundWords.includes(word.word) ? "found" : ""}
-            >
-              {word.word}
-            </li>
+      <div className="grid-word-container">
+        <div className="grid">
+          {crosswordData.map((row, rowIndex) => (
+            <div key={rowIndex} className="row">
+              {row.map((letter, colIndex) => (
+                <div
+                  key={`${rowIndex}-${colIndex}`}
+                  className={`cell ${letter ? "filled" : ""} ${getCellClass(
+                    rowIndex,
+                    colIndex
+                  )}`}
+                  onClick={() => handleCellClick(rowIndex, colIndex)}
+                >
+                  {letter}
+                </div>
+              ))}
+            </div>
           ))}
-        </ul>
+        </div>
+        <div className="word-list">
+          <h2>Words to Find:</h2>
+          <ul>
+            {wordsToFind.map((word) => (
+              <li
+                key={word.word}
+                className={foundWords.includes(word.word) ? "found" : ""}
+              >
+                {word.word}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
