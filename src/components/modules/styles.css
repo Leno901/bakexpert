@@ -1,0 +1,30 @@
+.module-btn-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.module-btn-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.module-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ffa500; /* Orange button background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.module-btn:hover {
+  background-color: #ff8500; /* Slightly darker orange on hover */
+}

@@ -1,14 +1,14 @@
 .main-about {
-  padding: 20px;
+  padding: 2rem; /* Use rem for scalability */
   position: relative;
   text-align: left;
 }
 
 .home-button {
-  background-color: white; /* White background */
-  border: 2px solid black; /* Add a border for better visibility */
-  border-radius: 50%; /* Makes it circular */
-  padding: 15px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 1rem; /* Use rem for consistency */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,42 +17,104 @@
 }
 
 .home-text {
-  /* transition: transform 0.2s; */
+  /* Commented out transition remains */
 }
 
 .abt-content {
-  font-size: x-large;
+  font-size: 1.5rem; /* Use rem instead of x-large for better control */
   text-align: justify;
   text-justify: inter-word;
-  width: 60%;
+  /* width: 70%; Adjust to a relative width */
+  margin: 0 auto; /* Center the content for smaller screens */
 }
 
-.abt-h1{
+.abt-content-desc {
+  font-size: 2rem;
+}
+
+.abt-h1 {
   font-style: italic;
+  font-size: 5rem;
 }
 
 .abt-home-button {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1rem; /* Use rem for gap */
   cursor: pointer;
   width: max-content;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .abt-home-button:hover .home-button {
-  background-color: lightgray; /* Change background on hover */
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  background-color: lightgray;
+  transform: scale(1.1);
 }
 
-/* .abt-home-button:hover .home-text {
-  transform: scale(1.1); /* Slightly enlarge on hover */
-} */
-
 h1 {
-  font-size: 2rem;
+  font-size: 2rem; /* Base font size */
+  /* text-align: center; Center the heading for better responsiveness */
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Use rem for scalability */
+  line-height: 1.5; /* Add line height for readability */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .abt-content {
+    width: 80%; /* Adjust width for medium screens */
+    font-size: 1.4rem; /* Slightly reduce font size */
+  }
+
+  h1 {
+    font-size: 1.8rem; /* Adjust heading size */
+  }
+
+  p {
+    font-size: 1rem; /* Keep font size readable */
+  }
+
+  .abt-content-desc {
+    font-size: 1rem;
+  }
+
+  .abt-h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .abt-content {
+    width: 90%; /* Adjust width for smaller screens */
+    font-size: 1.2rem; /* Further reduce font size */
+  }
+
+  h1 {
+    font-size: 1.6rem; /* Further adjust heading size */
+  }
+
+  .home-button {
+    padding: 0.8rem; /* Adjust padding for smaller buttons */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .abt-content {
+    width: 95%; /* Nearly full-width for smallest screens */
+    font-size: 1rem; /* Adjust font size for small devices */
+  }
+
+  h1 {
+    font-size: 1.4rem; /* Smallest heading size */
+  }
+
+  p {
+    font-size: 0.9rem; /* Smallest paragraph size */
+  }
+
+  .home-button {
+    padding: 0.6rem; /* Further adjust padding */
+  }
 }

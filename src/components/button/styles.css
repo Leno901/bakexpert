@@ -1,18 +1,19 @@
 /* NavButton.css */
 .nav-btn {
-  background-color: #F36D0A;
-  padding: 1.5rem;
+  background-color: #f36d0a;
+  padding: 10px 3px;
   border-radius: 10px;
   border: 0;
-  width: 200px;  /* Set a fixed width */
+  width: 300px; /* Set a fixed width */
   text-align: center;
   overflow: hidden;
-  white-space: nowrap;  /* Prevents the text from wrapping */
-  text-overflow: ellipsis;  /* Adds '...' if the text overflows */
+  white-space: nowrap; /* Prevents the text from wrapping */
+  text-overflow: ellipsis; /* Adds '...' if the text overflows */
   cursor: pointer;
   font-size: large;
+  font-size: 32px;
 }
 
 .nav-btn:hover {
-  background-color: #D15C0A;
+  background-color: #d15c0a;
 }

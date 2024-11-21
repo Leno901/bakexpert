@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   text-align: center;
 }
@@ -38,4 +38,41 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.nav-landing {
+  background-color: #333; /* Dark background for the header */
+  color: white; /* White text color */
+  padding: 1rem 2rem; /* Add padding around the header */
+  display: flex; /* Flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.nav-landing ul {
+  list-style: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Arrange items in a row */
+  gap: 4rem; /* Increased space between items */
+  align-items: center;
+}
+
+.nav-landing li {
+  font-size: 1.2rem; /* Base font size for all items */
+}
+
+.nav-landing li:nth-child(2) {
+  font-size: 2rem; /* Larger font size for the middle item */
+  font-weight: bold; /* Optional: Make it bold for emphasis */
+}
+
+.nav-landing a {
+  color: white; /* White link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-landing a:hover {
+  color: #ffa500; /* Orange color on hover */
 }
