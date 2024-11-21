@@ -4,6 +4,8 @@
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  align-content: center;
+
 }
 
 .nav-btn-container {

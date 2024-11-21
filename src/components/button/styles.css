@@ -10,6 +10,7 @@
   white-space: nowrap;  /* Prevents the text from wrapping */
   text-overflow: ellipsis;  /* Adds '...' if the text overflows */
   cursor: pointer;
+  font-size: large;
 }
 
 .nav-btn:hover {
