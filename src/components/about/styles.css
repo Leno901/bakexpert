@@ -1,0 +1,58 @@
+.main-about {
+  padding: 20px;
+  position: relative;
+  text-align: left;
+}
+
+.home-button {
+  background-color: white; /* White background */
+  border: 2px solid black; /* Add a border for better visibility */
+  border-radius: 50%; /* Makes it circular */
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.home-text {
+  /* transition: transform 0.2s; */
+}
+
+.abt-content {
+  font-size: x-large;
+  text-align: justify;
+  text-justify: inter-word;
+  width: 60%;
+}
+
+.abt-h1{
+  font-style: italic;
+}
+
+.abt-home-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: max-content;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.abt-home-button:hover .home-button {
+  background-color: lightgray; /* Change background on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* .abt-home-button:hover .home-text {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+} */
+
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+}

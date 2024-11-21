@@ -1,0 +1,17 @@
+/* NavButton.css */
+.nav-btn {
+  background-color: #F36D0A;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 0;
+  width: 200px;  /* Set a fixed width */
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;  /* Prevents the text from wrapping */
+  text-overflow: ellipsis;  /* Adds '...' if the text overflows */
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #D15C0A;
+}
