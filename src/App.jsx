@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Modules from "./components/modules/Modules";
-import ModulePage from "./components/modules/ModulePage";
+import ModulePage from "./components/modules/Modulepage";
 import Vmission from "./components/vmission/VMission";
 import bg from "./assets/image/baking.jpg";
 
@@ -32,19 +32,13 @@ function App() {
         <nav className="nav-landing">
           <ul>
             <li>
-              <Link to="/" onClick={handleResetQuiz}>
-                Home
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/modules" onClick={handleResetQuiz}>
-                Modules
-              </Link>
+              <Link to="/modules">Modules</Link>
             </li>
             <li>
-              <Link to="/about" onClick={handleResetQuiz}>
-                About
-              </Link>
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </nav>
@@ -63,7 +57,6 @@ function App() {
               />
             }
           />{" "}
-          <Route path="/vmission" element={<Vmission />} />
           {/* Dynamic route for each module */}
         </Routes>
       </div>
