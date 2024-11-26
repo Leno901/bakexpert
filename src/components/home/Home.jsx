@@ -8,10 +8,10 @@ import "./styles.css"; // Make sure to define other styles in your CSS
 function Home() {
   return (
     <motion.div
-      initial={{ opacity: 0, x: "-100vw" }} // Start position: off-screen left
-      animate={{ opacity: 1, x: 0 }} // End position: center with full opacity
-      exit={{ opacity: 0, x: "100vw" }} // Exit position: off-screen right
-      transition={{ type: "spring", stiffness: 50 }} // Smooth spring transition
+      initial={{ opacity: 0, y: "-50vh" }} // Start position: off-screen top
+      animate={{ opacity: 1, y: 0 }} // End position: center with full opacity
+      exit={{ opacity: 0, y: "50vh" }} // Exit position: off-screen bottom
+      transition={{ type: "spring", stiffness: 75, damping: 25 }} // Smooth spring transition
       className="home"
     >
       <div className="home-h1">BakeXpert</div>

@@ -1,18 +1,30 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Crossword from "./[2]/crossword";
+
+// Dynamic imports for modules
+import Module1 from "./[1]";
+import Module2 from "./[2]";
+// import Module3 from "./[3]";
+// import Module4 from "./[4]";
+// import Module5 from "./[5]";
+// import Module6 from "./[6]";
 
 function ModulePage() {
   const { moduleId } = useParams(); // Get the moduleId from the URL
 
-  let ModuleComponent;
-  // Dynamically select the component based on the moduleId
-  if (moduleId === "2") {
-    ModuleComponent = Crossword; // Render crossword component for module 2
-  } else {
-    // Handle other modules here (like 1, 3, etc.)
-    ModuleComponent = () => <div>Module {moduleId} content goes here</div>;
-  }
+  // Define mapping of moduleId to components
+  const modules = {
+    1: Module1,
+    2: Module2, // Special case: Module 2 uses a crossword component
+    // 3: Module3,
+    // 4: Module4,
+    // 5: Module5,
+    // 6: Module6,
+  };
+
+  // Dynamically select the module component based on the moduleId
+  const ModuleComponent =
+    modules[moduleId] || (() => <div>Module {moduleId} not found</div>);
 
   return (
     <div>
