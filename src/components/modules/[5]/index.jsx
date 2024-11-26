@@ -116,11 +116,11 @@ function Module5() {
         {showVideo && (
           <VideoContainer>
             <VideoWrapper>
-              <VideoTitle>Difference between Cake and Gateau</VideoTitle>
+              <VideoTitle>Types of Enriched Bread</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"
-                src="https://www.youtube.com/embed/A1Gm38BXE-Q"
+                src="https://modernistcuisine.com/"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -129,11 +129,11 @@ function Module5() {
               />
             </VideoWrapper>
             <VideoWrapper>
-              <VideoTitle>Example of Gateau</VideoTitle>
+              <VideoTitle>How to Make Enriched Bread</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"
-                src="https://www.youtube.com/embed/Mm_dervvQSk"
+                src="https://www.youtube.com/embed/watch?v=d4Bxs3tJ9fA"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

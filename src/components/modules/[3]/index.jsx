@@ -5,45 +5,57 @@ import styled from "styled-components";
 const questions = [
   {
     question:
-      "What is the rolled sponge cake filled with cream or jam commonly called?",
-    answer: "Swiss Roll",
-    options: ["Swiss Roll", "Roulade", "Gâteau", "Bûche de Noël", "Strudel"],
+      "What is the French term for a rich, multi-layered cake, often filled with cream or fruit?",
+    answer: "Gâteau",
+    options: ["Gâteau", "Tarte", "Petit Four", "Macaron", "Clafoutis"],
   },
   {
     question:
-      "What technique is essential to avoid cracking when rolling a Swiss roll?",
-    answer: "Rolling the sponge while warm",
+      "Which type of gâteaux typically features a light sponge cake soaked in syrup and layered with cream?",
+    answer: "Gâteau Moelleux",
     options: [
-      "Rolling the sponge while warm",
-      "Freezing before rolling",
-      "Adding extra flour",
-      "Using a rolling pin",
-      "Spreading extra filling",
+      "Gâteau Moelleux",
+      "Gâteau Sec",
+      "Gâteau Glacé",
+      "Tarte Tatin",
+      "Mille-feuille",
     ],
   },
   {
     question:
-      "Name the dessert often decorated to resemble a log for Christmas celebrations.",
+      'Name the famous gâteaux made with layers of puff pastry and cream, known as "Napoleon" in English.',
+    answer: "Mille-feuille",
+    options: [
+      "Mille-feuille",
+      "Opera Cake",
+      "Tartelette",
+      "Éclair",
+      "Clafoutis",
+    ],
+  },
+  {
+    question:
+      "What is the difference between a gâteau and a tart in terms of their crust?",
+    answer: "Gâteau uses cake-like base; tart uses pastry crust",
+    options: [
+      "Gâteau uses cake-like base; tart uses pastry crust",
+      "Both have cake-like bases",
+      "Both have pastry crusts",
+      "Tart uses sponge layers; gâteau uses cream layers",
+      "No difference",
+    ],
+  },
+  {
+    question:
+      "Which type of gâteaux is traditionally served during French celebrations, such as Christmas?",
     answer: "Bûche de Noël",
     options: [
       "Bûche de Noël",
       "Mille-feuille",
+      "Clafoutis",
       "Tarte Tatin",
-      "Opera Cake",
-      "Swiss Roll",
+      "Gâteau Glacé",
     ],
-  },
-  {
-    question:
-      "What ingredient helps create the soft and pliable texture of a Swiss roll sponge?",
-    answer: "Eggs",
-    options: ["Eggs", "Butter", "Milk", "Baking Soda", "Cornstarch"],
-  },
-  {
-    question:
-      "Which term refers to the filling of a Swiss roll that can range from whipped cream to fruit spreads?",
-    answer: "Filling",
-    options: ["Filling", "Ganache", "Icing", "Buttercream", "Custard"],
   },
 ];
 
@@ -116,7 +128,7 @@ function Module3() {
         {showVideo && (
           <VideoContainer>
             <VideoWrapper>
-              <VideoTitle>Difference between Cake and Gateau</VideoTitle>
+              <VideoTitle>Different Designs of Petit Fours</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"
@@ -129,7 +141,7 @@ function Module3() {
               />
             </VideoWrapper>
             <VideoWrapper>
-              <VideoTitle>Example of Gateau</VideoTitle>
+              <VideoTitle>How to Make Petit Fours</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"

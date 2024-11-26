@@ -5,45 +5,51 @@ import styled from "styled-components";
 const questions = [
   {
     question:
-      "What is the rolled sponge cake filled with cream or jam commonly called?",
-    answer: "Swiss Roll",
-    options: ["Swiss Roll", "Roulade", "Gâteau", "Bûche de Noël", "Strudel"],
-  },
-  {
-    question:
-      "What technique is essential to avoid cracking when rolling a Swiss roll?",
-    answer: "Rolling the sponge while warm",
+      "What is the term for bread made without yeast, relying on baking soda or baking powder for leavening?",
+    answer: "Quick Bread",
     options: [
-      "Rolling the sponge while warm",
-      "Freezing before rolling",
-      "Adding extra flour",
-      "Using a rolling pin",
-      "Spreading extra filling",
+      "Quick Bread",
+      "Sourdough",
+      "Flatbread",
+      "Rye Bread",
+      "Whole Grain",
     ],
   },
   {
     question:
-      "Name the dessert often decorated to resemble a log for Christmas celebrations.",
-    answer: "Bûche de Noël",
+      "Name the quick bread that is often flavored with bananas and nuts.",
+    answer: "Banana Bread",
     options: [
-      "Bûche de Noël",
-      "Mille-feuille",
-      "Tarte Tatin",
-      "Opera Cake",
-      "Swiss Roll",
+      "Banana Bread",
+      "Zucchini Bread",
+      "Pumpkin Bread",
+      "Cornbread",
+      "Carrot Bread",
     ],
   },
   {
     question:
-      "What ingredient helps create the soft and pliable texture of a Swiss roll sponge?",
-    answer: "Eggs",
-    options: ["Eggs", "Butter", "Milk", "Baking Soda", "Cornstarch"],
+      "What type of quick bread is commonly baked in a muffin tin and served at breakfast?",
+    answer: "Muffins",
+    options: ["Muffins", "Scones", "Biscuits", "Pancakes", "Popovers"],
   },
   {
     question:
-      "Which term refers to the filling of a Swiss roll that can range from whipped cream to fruit spreads?",
-    answer: "Filling",
-    options: ["Filling", "Ganache", "Icing", "Buttercream", "Custard"],
+      "What ingredient in quick bread provides the acid needed to activate baking soda?",
+    answer: "Buttermilk",
+    options: ["Buttermilk", "Lemon Juice", "Vinegar", "Yogurt", "Honey"],
+  },
+  {
+    question:
+      "Name the Irish quick bread that uses baking soda and buttermilk as its primary leavening agents.",
+    answer: "Soda Bread",
+    options: [
+      "Soda Bread",
+      "Brown Bread",
+      "Potato Bread",
+      "Oat Bread",
+      "Wheaten Bread",
+    ],
   },
 ];
 
@@ -51,7 +57,7 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function Module4() {
+function Module6() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -116,11 +122,11 @@ function Module4() {
         {showVideo && (
           <VideoContainer>
             <VideoWrapper>
-              <VideoTitle>Difference recipe of Swiss Roll</VideoTitle>
+              <VideoTitle>Introduction to Quick Breads</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"
-                src="https://www.youtube.com/embed/lIhrNMEp3oM?rel=0"
+                src="https://www.youtube.com/embed/Oy6bQWgf1yE?rel=0"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -129,11 +135,11 @@ function Module4() {
               />
             </VideoWrapper>
             <VideoWrapper>
-              <VideoTitle>Example of Swiss Roll</VideoTitle>
+              <VideoTitle>How to make Quick Bread (muffin)</VideoTitle>
               <iframe
                 width="45%"
                 height="80%"
-                src="https://www.youtube.com/embed/MZEUpCZFlko?rel=0"
+                src="https://www.youtube.com/embed/3Ho9ivMWhho?rel=0"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -156,7 +162,7 @@ function Module4() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1>Swiss Roll Quiz</h1>
+        <h1>Quick Bread Quiz</h1>
         <ScoreDisplay>Score: {score}</ScoreDisplay>
         <p>
           Question {currentQuestion + 1} of {questions.length}
@@ -199,7 +205,7 @@ function Module4() {
   );
 }
 
-export default Module4;
+export default Module6;
 
 // Styled Components
 const Container = styled.div`

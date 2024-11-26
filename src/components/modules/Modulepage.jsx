@@ -7,7 +7,7 @@ import Module2 from "./[2]";
 import Module3 from "./[3]";
 import Module4 from "./[4]";
 import Module5 from "./[5]";
-// import Module6 from "./[6]";
+import Module6 from "./[6]";
 
 function ModulePage() {
   const { moduleId } = useParams(); // Get the moduleId from the URL
@@ -19,7 +19,7 @@ function ModulePage() {
     3: Module3,
     4: Module4,
     5: Module5,
-    // 6: Module6,
+    6: Module6,
   };
 
   // Dynamically select the module component based on the moduleId

@@ -18,7 +18,7 @@ function Modules() {
         <h2>Select a Module</h2>
         <div className="btn-group">
           {/* Buttons with individual animations */}
-          {Array.from({ length: 5 }, (_, i) => (
+          {Array.from({ length: 6 }, (_, i) => (
             <motion.div
               key={i}
               variants={buttonVariants}
