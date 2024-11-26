@@ -190,33 +190,38 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   if (showVideo && !quizStarted) {
     return (
       <Container>
+        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
+        {/* {showVideo && ( */}
         <VideoContainer>
           <VideoWrapper>
-            <VideoTitle>Differents design of Specialty Cake</VideoTitle>
+            <VideoTitle>Different Designs of Petit Fours</VideoTitle>
             <iframe
               width="45%"
               height="80%"
-              src="https://www.youtube.com/embed/zSRdHcW8TLw?si=_50M5u-tZXGRwecG"
+              src="https://www.youtube.com/embed/T-AKfxMVo2o?rel=0"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
           <VideoWrapper>
-            <VideoTitle>Example of Specialty Cake</VideoTitle>
+            <VideoTitle>How to Make Petit Fours</VideoTitle>
             <iframe
               width="45%"
               height="80%"
-              src="https://www.youtube.com/embed/x-H4xifwzc8"
+              src="https://www.youtube.com/embed/M5NOHVp2lPE?rel=0"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
+        {/* )} */}
       </Container>
     );
   }
