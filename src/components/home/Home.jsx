@@ -25,7 +25,7 @@ function Home() {
         <NavButton label="Modules" onClick={() => handleClick("modules")} />
         <NavButton
           label="Vision & Mission"
-          onClick={() => handleClick("Vision & Mission")}
+          onClick={() => handleClick("vmission")}
         />
       </div>
     </motion.div>

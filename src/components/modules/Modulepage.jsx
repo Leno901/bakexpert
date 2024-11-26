@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 // Dynamic imports for modules
 import Module1 from "./[1]";
 import Module2 from "./[2]";
-// import Module3 from "./[3]";
-// import Module4 from "./[4]";
-// import Module5 from "./[5]";
+import Module3 from "./[3]";
+import Module4 from "./[4]";
+import Module5 from "./[5]";
 // import Module6 from "./[6]";
 
 function ModulePage() {
@@ -15,10 +15,10 @@ function ModulePage() {
   // Define mapping of moduleId to components
   const modules = {
     1: Module1,
-    2: Module2, // Special case: Module 2 uses a crossword component
-    // 3: Module3,
-    // 4: Module4,
-    // 5: Module5,
+    2: Module2,
+    3: Module3,
+    4: Module4,
+    5: Module5,
     // 6: Module6,
   };
 

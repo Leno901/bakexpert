@@ -1,6 +1,8 @@
 .module-btn-container {
   margin-top: 2rem;
   text-align: center;
+  height: 70vh;
+  place-content: center;
 }
 
 .module-btn-container h2 {

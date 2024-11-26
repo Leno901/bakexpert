@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Modules from "./components/modules/Modules";
 import ModulePage from "./components/modules/Modulepage";
+import Vmission from "./components/vmission/VMission";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/modules/:moduleId" element={<ModulePage />} />{" "}
+          <Route path="/vmission" element={<Vmission />} />
           {/* Dynamic route for each module */}
         </Routes>
       </div>

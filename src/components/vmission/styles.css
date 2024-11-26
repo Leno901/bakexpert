@@ -1,0 +1,40 @@
+/* Main container */
+.vmission-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* background: #f9f9f9; */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Vision & Mission Title */
+.vmission-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Section titles for Vision and Mission */
+.vmission-vision-title,
+.vmission-mission-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Description text */
+.vmission-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: white;
+  text-align: justify;
+}
