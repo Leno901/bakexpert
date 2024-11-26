@@ -15,11 +15,11 @@ export default function ModulePage({ quizStarted, setQuizStarted }) {
   // Define mapping of moduleId to components
   const modules = {
     1: Module1,
-    2: Module2,
-    3: Module3,
-    4: Module4,
-    5: Module5,
-    6: Module6,
+    // 2: Module2,
+    // 3: Module3,
+    // 4: Module4,
+    // 5: Module5,
+    // 6: Module6,
   };
 
   // Dynamically select the module component based on the moduleId
