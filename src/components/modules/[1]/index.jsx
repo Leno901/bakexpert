@@ -139,40 +139,43 @@ function Module2() {
     setShuffledOptions(shuffleArray([...questions[currentQuestion].options]));
   }, [currentQuestion]);
 
-  if (!quizStarted) {
+  if (showVideo && !quizStarted) {
     return (
       <Container>
-        <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton>
-        {showVideo && (
-          <VideoContainer>
-            <VideoWrapper>
-              <VideoTitle>Differents design of Specialty Cake</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/zSRdHcW8TLw?si=_50M5u-tZXGRwecG"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
-            <VideoWrapper>
-              <VideoTitle>Example of Specialty Cake</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/x-H4xifwzc8"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
-          </VideoContainer>
-        )}
+        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
+        {/* {showVideo && ( */}
+        <VideoContainer>
+          <VideoWrapper>
+            <VideoTitle>Differents design of Specialty Cake</VideoTitle>
+            <iframe
+              width="45%"
+              height="80%"
+              src="https://www.youtube.com/embed/zSRdHcW8TLw?si=_50M5u-tZXGRwecG"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              onEnded={handleVideoEnd}
+            />
+          </VideoWrapper>
+          <VideoWrapper>
+            <VideoTitle>Example of Specialty Cake</VideoTitle>
+            <iframe
+              width="45%"
+              height="80%"
+              src="https://www.youtube.com/embed/x-H4xifwzc8"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              onEnded={handleVideoEnd}
+            />
+          </VideoWrapper>
+        </VideoContainer>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Overview
+        </ProceedButton>
+        {/* )} */}
       </Container>
     );
   }
@@ -266,56 +269,60 @@ function Module2() {
     );
   }
 
-  return (
-    <Container>
-      <ResetButton onClick={handleReset}>Reset Quiz</ResetButton>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1>Specialty Cake Quiz</h1>
-        <ScoreDisplay>Score: {score}</ScoreDisplay>
-        <p>
-          Question {currentQuestion + 1} of {questions.length}
-        </p>
-        <Question
-          isCorrect={isCorrect}
-          isIncorrect={!isCorrect && selectedAnswer}
+  if (quizStarted) {
+    return (
+      <Container>
+        <ResetButton onClick={handleReset}>Reset Quiz</ResetButton>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          {question.question}
-        </Question>
-
-        <OptionsContainer>
-          {shuffledOptions.map((option, index) => (
-            <OptionButton
-              key={index}
-              onClick={() => handleAnswer(option)}
-              disabled={selectedAnswer !== null} // Disable options after answer is selected
-              isSelected={selectedAnswer === option}
-              isCorrect={isCorrect && selectedAnswer === option}
-              isIncorrect={!isCorrect && selectedAnswer === option}
-            >
-              {option}
-            </OptionButton>
-          ))}
-        </OptionsContainer>
-
-        <NavigationButtons>
-          <Button onClick={handlePrevious} disabled={currentQuestion === 0}>
-            Previous Question
-          </Button>
-          <Button
-            onClick={handleNext}
-            disabled={currentQuestion === questions.length - 1}
+          <h1>Specialty Cake Quiz</h1>
+          <ScoreDisplay>Score: {score}</ScoreDisplay>
+          <p>
+            Question {currentQuestion + 1} of {questions.length}
+          </p>
+          <Question
+            isCorrect={isCorrect}
+            isIncorrect={!isCorrect && selectedAnswer}
           >
-            Next Question
-          </Button>
-        </NavigationButtons>
-      </motion.div>
-    </Container>
-  );
+            {question.question}
+          </Question>
+
+          <OptionsContainer>
+            {shuffledOptions.map((option, index) => (
+              <OptionButton
+                key={index}
+                onClick={() => handleAnswer(option)}
+                disabled={selectedAnswer !== null} // Disable options after answer is selected
+                isSelected={selectedAnswer === option}
+                isCorrect={isCorrect && selectedAnswer === option}
+                isIncorrect={!isCorrect && selectedAnswer === option}
+              >
+                {option}
+              </OptionButton>
+            ))}
+          </OptionsContainer>
+
+          <NavigationButtons>
+            <Button onClick={handlePrevious} disabled={currentQuestion === 0}>
+              Previous Question
+            </Button>
+            <Button
+              onClick={handleNext}
+              disabled={currentQuestion === questions.length - 1}
+            >
+              Next Question
+            </Button>
+          </NavigationButtons>
+        </motion.div>
+      </Container>
+    );
+  }
+
+  return null;
 }
 
 export default Module2;
@@ -361,6 +368,7 @@ const ProceedButton = styled.button`
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 10px;
+  margin-top: 50px;
   transition: all 0.3s ease;
 
   &:hover {
