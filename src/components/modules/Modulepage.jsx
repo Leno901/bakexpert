@@ -9,7 +9,7 @@ import Module4 from "./[4]";
 import Module5 from "./[5]";
 import Module6 from "./[6]";
 
-function ModulePage({ quizStarted, setQuizStarted }) {
+export default function ModulePage({ quizStarted, setQuizStarted }) {
   const { moduleId } = useParams(); // Get the moduleId from the URL
 
   // Define mapping of moduleId to components
@@ -37,5 +37,3 @@ function ModulePage({ quizStarted, setQuizStarted }) {
     </div>
   );
 }
-
-export default ModulePage;
