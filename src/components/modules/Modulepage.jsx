@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-// Dynamic imports for modules
+// Importing all modules statically for simplicity
 import Module1 from "./[1]";
 import Module2 from "./[2]";
 import Module3 from "./[3]";
@@ -29,11 +29,11 @@ export default function ModulePage({ quizStarted, setQuizStarted }) {
   return (
     <div>
       <h1>Module {moduleId}</h1>
+      {/* Render the selected component dynamically */}
       <ModuleComponent
         quizStarted={quizStarted}
         setQuizStarted={setQuizStarted}
-      />{" "}
-      {/* Render the selected component */}
+      />
     </div>
   );
 }
