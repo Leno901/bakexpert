@@ -69,7 +69,7 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-const Module1 = ({ quizStarted, setQuizStarted }) => {
+const Module2 = ({ quizStarted, setQuizStarted }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -396,7 +396,7 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
   }
 };
 
-export default Module1;
+export default Module2;
 
 // Styled Components
 
