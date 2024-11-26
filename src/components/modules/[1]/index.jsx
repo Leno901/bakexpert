@@ -69,7 +69,7 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function Module2() {
+function Module1() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -79,6 +79,9 @@ function Module2() {
   const [showOverview2, setShowOverview2] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [showVideo, setShowVideo] = useState(true);
+  const [showUser, setShowUser] = useState(false);
+  const [userName, setUserName] = useState(""); // New state for user name
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -95,10 +98,12 @@ function Module2() {
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+    if (currentQuestion === questions.length - 1) {
+      setQuizCompleted(true); // Mark the quiz as complete
+    } else {
+      setCurrentQuestion(currentQuestion + 1); // Go to the next question
+      resetAnswerState(); // Reset the answer state for the next question
     }
-    resetAnswerState();
   };
 
   const handlePrevious = () => {
@@ -111,16 +116,27 @@ function Module2() {
   const handleReset = () => {
     setCurrentQuestion(0);
     setScore(0);
+    setQuizCompleted(false);
     resetAnswerState();
   };
 
   const handleStartQuiz = () => {
+    if (userName.trim() === "") {
+      alert("Please enter your name before starting the quiz.");
+      return;
+    }
     setQuizStarted(true);
   };
 
   const handleProceedToOverview = () => {
     setShowVideo(false);
     setShowOverview(true);
+  };
+
+  const handleShowUser = () => {
+    setShowOverview(false);
+    setShowOverview2(false);
+    setShowUser(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -262,14 +278,27 @@ function Module2() {
           and decorated. Also Cakes that use fruits as the main ingredient,
           often used in celebrations and holidays.
         </p>
-        <ProceedButton onClick={() => setQuizStarted(true)}>
-          Proceed to Quiz
-        </ProceedButton>
+        <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
       </Container>
     );
   }
 
-  if (quizStarted) {
+  if (showUser && !quizStarted) {
+    return (
+      <Container>
+        <h2>Enter Your Name</h2>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <ProceedButton onClick={handleStartQuiz}>Start Quiz</ProceedButton>
+      </Container>
+    );
+  }
+
+  if (quizStarted && !quizCompleted) {
     return (
       <Container>
         <ResetButton onClick={handleReset}>Reset Quiz</ResetButton>
@@ -280,7 +309,9 @@ function Module2() {
           transition={{ duration: 0.5 }}
         >
           <h1>Specialty Cake Quiz</h1>
-          <ScoreDisplay>Score: {score}</ScoreDisplay>
+          <ScoreDisplay>
+            {userName}'s Score: {score}
+          </ScoreDisplay>
           <p>
             Question {currentQuestion + 1} of {questions.length}
           </p>
@@ -312,7 +343,10 @@ function Module2() {
             </Button>
             <Button
               onClick={handleNext}
-              disabled={currentQuestion === questions.length - 1}
+              disabled={
+                selectedAnswer === null ||
+                currentQuestion === questions.length - 1
+              }
             >
               Next Question
             </Button>
@@ -325,7 +359,7 @@ function Module2() {
   return null;
 }
 
-export default Module2;
+export default Module1;
 
 // Styled Components
 const Container = styled.div`
