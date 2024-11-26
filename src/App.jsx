@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Modules from "./components/modules/Modules";
-import ModulePage from "./components/modules/ModulePage";
+import ModulePage from "./components/modules/ModulePage.jsx";
 import Vmission from "./components/vmission/VMission";
 import bg from "./assets/image/baking.jpg";
 
