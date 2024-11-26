@@ -121,7 +121,7 @@ function Module2() {
     setShuffledOptions(shuffleArray([...questions[currentQuestion].options]));
   }, [currentQuestion]);
 
-  if (showVideo) {
+  if (showVideo && !quizStarted) {
     return (
       <Container>
         <VideoContainer>
@@ -150,101 +150,58 @@ function Module2() {
             />
           </VideoWrapper>
         </VideoContainer>
-        <ProceedButton onClick={handleProceedToOverview}>
-          Proceed to Overview
-        </ProceedButton>
-      </Container>
-    );
-  }
-
-  if (showOverview && !quizStarted) {
-    return (
-      <Container>
-        <h2>Specialty Cake Overview</h2>
-        <p>
-          This lesson covers the essential techniques and skills involved in the
-          preparation, assembly, and decoration of specialty cakes, which are
-          crucial in the bread and pastry industry. Specialty cakes are
-          intricate and highly detailed cakes used for special occasions such as
-          weddings, birthdays, and other celebrations. The skills required to
-          create these cakes include proper baking techniques, filling,
-          frosting, and decoration, all of which will be explored in this
-          module.
-        </p>
-        <p>
-          By the end of this lesson, students will have the practical skills to
-          design and create beautiful, flavorful specialty cakes, enhancing
-          their competencies as future pastry chefs or culinary professionals.
-        </p>
-        <h2>Introduction to Specialty Cakes</h2>
-        <p>
-          <strong>What are Specialty Cakes?</strong> Specialty cakes are
-          elaborately designed cakes tailored for special occasions, with unique
-          decorations and flavors. These cakes stand apart from regular cakes
-          because of their custom designs, use of premium ingredients, and
-          intricate preparation. A specialty cake is a unique, customized, or
-          elaborate cake designed to suit a specific occasion, theme, or dietary
-          preference. These cakes often showcase creativity, advanced baking
-          techniques, and intricate decorations, making them a centerpiece for
-          celebrations such as weddings, birthdays, anniversaries, or special
-          events.
-        </p>
-        <p>
-          Specialty cakes come in a wide variety of flavors, shapes, and
-          designs, ranging from multi-tiered wedding cakes adorned with fondant
-          flowers to themed birthday cakes featuring sculpted designs. They may
-          also include innovative techniques such as airbrushing, sugar work, or
-          edible printing.
-        </p>
-        <ProceedButton onClick={handleProceedToOverview2}>
-          Proceed to Types
-        </ProceedButton>
-      </Container>
-    );
-  }
-
-  if (showOverview2 && !quizStarted) {
-    return (
-      <Container>
-        <h2>Types of Specialty Cakes</h2>
-        <p>
-          <strong>Layer Cakes:</strong> is a stack of multiple layers or sheets
-          of cake held together by some form of filling. The filling could be
-          anything decadent such as jam, frosting or cream. The type of cakes
-          that are typically used in layer cake are butter cakes or sponge
-          cakes. Popular flavor combinations include the German chocolate cake,
-          red velvet cake, Black Forest cake, and carrot cake with cream cheese
-          icing. Primarily used in special occasions such as Christian weddings,
-          layer cakes add a special touch to memorable events.  
-        </p>
-        <p>
-          <strong>Fondant Cakes:</strong> Fondant is an edible icing with a
-          pliable texture that can be rolled, shaped and sculpted. It's most
-          commonly used to decorate cakes, cupcakes and cookies. There are
-          different types of fondant, including rolled fondant, pour fondant,
-          chocolate fondant, sculpting fondant, marshmallow fondant and gumpaste
-          fondant.
-        </p>
-        <p>
-          <strong>Mousse Cakes:</strong> Mousse cake is a type of dessert that
-          has an airy or fluffy texture. The word 'mousse' itself literally
-          translates to “foam” in French due to its really light structure. This
-          light texture can be achieved thanks to the folding technique, which
-          is the movement of gently folding in an “areator” onto a “base”.
-        </p>
-        <p>
-          <strong>Fruit Cakes:</strong> Fruitcake or fruit cake is a cake made
-          with candied or dried fruit, nuts, and spices, and optionally soaked
-          in spirits. In the United Kingdom, certain rich versions may be iced
-          and decorated. Also Cakes that use fruits as the main ingredient,
-          often used in celebrations and holidays.
-        </p>
         <ProceedButton onClick={() => setQuizStarted(true)}>
           Proceed to Quiz
         </ProceedButton>
       </Container>
     );
   }
+
+  // if (showOverview && !quizStarted) {
+  //   return (
+  //     <Container>
+  //       <h2>Specialty Cake Overview</h2>
+  //       <p>
+  //         This lesson covers the essential techniques and skills involved in the
+  //         preparation, assembly, and decoration of specialty cakes, which are
+  //         crucial in the bread and pastry industry. Specialty cakes are
+  //         intricate and highly detailed cakes used for special occasions such as
+  //         weddings, birthdays, and other celebrations. The skills required to
+  //         create these cakes include proper baking techniques, filling,
+  //         frosting, and decoration, all of which will be explored in this
+  //         module.
+  //       </p>
+  //       <p>
+  //         By the end of this lesson, students will have the practical skills to
+  //         design and create beautiful, flavorful specialty cakes, enhancing
+  //         their competencies as future pastry chefs or culinary professionals.
+  //       </p>
+  //       <h2>Introduction to Specialty Cakes</h2>
+  //       <p>
+  //         <strong>What are Specialty Cakes?</strong> Specialty cakes are
+  //         elaborately designed cakes tailored for special occasions, with unique
+  //         decorations and flavors. These cakes stand apart from regular cakes
+  //         because of their custom designs, use of premium ingredients, and
+  //         intricate preparation. A specialty cake is a unique, customized, or
+  //         elaborate cake designed to suit a specific occasion, theme, or dietary
+  //         preference. These cakes often showcase creativity, advanced baking
+  //         techniques, and intricate decorations, making them a centerpiece for
+  //         celebrations such as weddings, birthdays, anniversaries, or special
+  //         events.
+  //       </p>
+  //       <p>
+  //         Specialty cakes come in a wide variety of flavors, shapes, and
+  //         designs, ranging from multi-tiered wedding cakes adorned with fondant
+  //         flowers to themed birthday cakes featuring sculpted designs. They may
+  //         also include innovative techniques such as airbrushing, sugar work, or
+  //         edible printing.
+  //       </p>
+  //       <ProceedButton onClick={() => setQuizStarted(true)}>
+  //         Proceed to Quiz
+  //       </ProceedButton>
+  //     </Container>
+  //   );
+  // }
 
   if (quizStarted) {
     return (
