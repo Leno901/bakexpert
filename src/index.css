@@ -1,10 +1,11 @@
 :root {
+  --background-image: url("./assets/image/baking.jpg"); /* default image */
   line-height: 1.5;
   font-weight: 400;
   position: relative;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-image: url("./assets/image/baking.jpg");
+  background-image: var(--background-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -28,6 +29,7 @@
   background: rgba(0, 0, 0, 0.8); /* 20% opacity */
   z-index: -1; /* Ensures the overlay is behind content */
 }
+
 /* a {
   font-weight: 500;
   color: #646cff;

@@ -9,7 +9,7 @@ import Module4 from "./[4]";
 import Module5 from "./[5]";
 import Module6 from "./[6]";
 
-function ModulePage() {
+function ModulePage({ quizStarted, setQuizStarted }) {
   const { moduleId } = useParams(); // Get the moduleId from the URL
 
   // Define mapping of moduleId to components
@@ -29,7 +29,11 @@ function ModulePage() {
   return (
     <div>
       <h1>Module {moduleId}</h1>
-      <ModuleComponent /> {/* Render the selected component */}
+      <ModuleComponent
+        quizStarted={quizStarted}
+        setQuizStarted={setQuizStarted}
+      />{" "}
+      {/* Render the selected component */}
     </div>
   );
 }

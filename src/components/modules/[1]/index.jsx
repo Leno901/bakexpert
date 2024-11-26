@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -69,7 +69,7 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function Module1() {
+const Module1 = ({ quizStarted, setQuizStarted }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -77,11 +77,39 @@ function Module1() {
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [showOverview, setShowOverview] = useState(true);
   const [showOverview2, setShowOverview2] = useState(false);
-  const [quizStarted, setQuizStarted] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
+
+  const gifs = [
+    "/src/assets/gif/1.gif",
+    "/src/assets/gif/2.gif",
+    "/src/assets/gif/3.gif",
+    "/src/assets/gif/4.gif",
+  ];
+
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
+
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
+
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -163,8 +191,6 @@ function Module1() {
   if (showVideo && !quizStarted) {
     return (
       <Container>
-        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
-        {/* {showVideo && ( */}
         <VideoContainer>
           <VideoWrapper>
             <VideoTitle>Differents design of Specialty Cake</VideoTitle>
@@ -192,7 +218,6 @@ function Module1() {
           </VideoWrapper>
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
-        {/* )} */}
       </Container>
     );
   }
@@ -324,47 +349,62 @@ function Module1() {
           >
             {question.question}
           </Question>
-
           <OptionsContainer>
-            {shuffledOptions.map((option, index) => (
-              <OptionButton
-                key={index}
-                onClick={() => handleAnswer(option)}
-                disabled={selectedAnswer !== null} // Disable options after answer is selected
-                isSelected={selectedAnswer === option}
-                isCorrect={isCorrect && selectedAnswer === option}
-                isIncorrect={!isCorrect && selectedAnswer === option}
-              >
-                {option}
-              </OptionButton>
-            ))}
-          </OptionsContainer>
+            {shuffledOptions.map((option, index) => {
+              const isSelected = selectedAnswer === option;
+              const isCorrect = option === question.answer;
+              const isIncorrect = isSelected && !isCorrect; // Incorrect if selected and not correct
 
+              return (
+                <OptionButton
+                  key={index}
+                  isSelected={isSelected}
+                  isCorrect={isCorrect}
+                  isIncorrect={isIncorrect}
+                  onClick={() => handleAnswer(option)}
+                >
+                  {option}
+                </OptionButton>
+              );
+            })}
+          </OptionsContainer>
+          {selectedAnswer && (
+            <Result>{isCorrect ? "Correct!" : "Incorrect!"}</Result>
+          )}
           <NavigationButtons>
-            <Button onClick={handlePrevious} disabled={currentQuestion === 0}>
-              Previous Question
-            </Button>
-            <Button
-              onClick={handleNext}
-              disabled={
-                selectedAnswer === null ||
-                currentQuestion === questions.length - 1
-              }
-            >
-              Next Question
-            </Button>
+            <Button onClick={handleNext}>Next</Button>
+            {/* {currentQuestion > 0 && (
+              <Button onClick={handlePrevious}>Previous</Button>
+            )} */}
           </NavigationButtons>
         </motion.div>
       </Container>
     );
   }
 
-  return null;
-}
+  if (quizCompleted) {
+    return (
+      <Container>
+        <h1>Congratulations, {userName}!</h1>
+        <p>You have completed the quiz.</p>
+        <ScoreDisplay>
+          Your final score is {score} out of {questions.length}
+        </ScoreDisplay>
+        <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
+      </Container>
+    );
+  }
+};
 
 export default Module1;
 
 // Styled Components
+
+const Result = styled.div`
+  font-size: 18px;
+  margin-top: 20px;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -436,13 +476,6 @@ const ScoreDisplay = styled.h3`
   margin: 10px 0;
 `;
 
-const Question = styled(motion.h2)`
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
-`;
-
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -450,8 +483,17 @@ const OptionsContainer = styled.div`
 `;
 
 const OptionButton = styled.div`
-  background: ${(props) =>
-    props.isSelected ? (props.isCorrect ? "#28a745" : "#dc3545") : "#f39c12"};
+  background: ${(props) => {
+    if (props.isSelected) {
+      // If the answer is selected
+      if (props.isCorrect) {
+        return "#28a745"; // Green for correct
+      } else if (props.isIncorrect) {
+        return "#dc3545"; // Red for incorrect
+      }
+    }
+    return "#f39c12"; // Default color for unselected options
+  }};
   color: ${(props) => (props.isSelected ? "white" : "#333")};
   padding: 10px;
   margin: 5px 0;
@@ -461,8 +503,7 @@ const OptionButton = styled.div`
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${(props) =>
-      props.isSelected ? (props.isCorrect ? "#218838" : "#c82333") : "#e2e6ea"};
+    background: #e2e6ea;
   }
 
   &:disabled {
@@ -471,9 +512,16 @@ const OptionButton = styled.div`
   }
 `;
 
+const Question = styled(motion.h2)`
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: ${(props) =>
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
+`;
+
 const NavigationButtons = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   width: 100%;
   margin-top: 20px;
 `;
