@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import gif1 from "../../../assets/gif/1.gif";
+import gif2 from "../../../assets/gif/2.gif";
+import gif3 from "../../../assets/gif/3.gif";
+import gif4 from "../../../assets/gif/4.gif";
 
 const questions = [
   {
@@ -82,12 +86,7 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
 
-  const gifs = [
-    "/src/assets/gif/1.gif",
-    "/src/assets/gif/2.gif",
-    "/src/assets/gif/3.gif",
-    "/src/assets/gif/4.gif",
-  ];
+  const gifs = [gif1, gif2, gif3, gif4];
 
   useEffect(() => {
     if (quizStarted) {
