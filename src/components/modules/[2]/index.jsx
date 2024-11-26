@@ -1,66 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const questions = [
   {
     question:
-      "What is the term for a cake designed for a specific theme or occasion, often with elaborate decorations?",
-    answer: "Specialty Cake",
+      "What is the term for a small, bite-sized cake or confection often served with tea or as a dessert?",
+    answer: "Petit Four",
+    options: ["Petit Four", "Macaron", "Biscuit", "Cannelé", "Scone"],
+  },
+  {
+    question:
+      "These are glazed mini cakes, often coated in fondant or icing. What are they called?",
+    answer: "Petit Four Glacé",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "Petit Four Glacé",
+      "Madeleine",
+      "Éclair",
+      "Financier",
+      "Chouquette",
     ],
   },
   {
     question:
-      "This type of cake is often layered with fillings like mousse, ganache, or buttercream. What is it?",
-    answer: "Layer Cake",
+      "Name the type of petit four that is made from puff pastry and filled with sweet or savory ingredients.",
+    answer: "Petit Four Salé",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "Petit Four Salé",
+      "Choux",
+      "Pâte Sucrée",
+      "Palmiers",
+      "Tartlets",
     ],
   },
   {
     question:
-      "Name the cake that frequently involves sculpting and is typically made for weddings, birthdays, or anniversaries.",
-    answer: "Custom Cake",
-    options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
-    ],
+      "Which French term translates to 'small oven,' referring to these tiny confections?",
+    answer: "Petit Four",
+    options: ["Bouchon", "Pâtisserie", "Petit Four", "Tartelette", "Chocolat"],
   },
   {
     question:
-      "What is the edible medium often used to cover specialty cakes for a smooth, polished appearance?",
-    answer: "Fondant",
+      "What category of petit fours includes almond-based treats like macarons?",
+    answer: "Petit Four Sec",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
-    ],
-  },
-  {
-    question:
-      "Which specialty cake is commonly associated with towering tiers and intricate piping designs?",
-    answer: "Wedding Cake",
-    options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "Petit Four Sec",
+      "Petit Four Glacé",
+      "Petit Four Salé",
+      "Madeleine",
+      "Chocolatier",
     ],
   },
 ];
@@ -69,7 +57,7 @@ function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-const Module2 = ({ quizStarted, setQuizStarted }) => {
+function Module2() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -77,39 +65,11 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [showOverview, setShowOverview] = useState(true);
   const [showOverview2, setShowOverview2] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
-
-  const gifs = [
-    "/src/assets/gif/1.gif",
-    "/src/assets/gif/2.gif",
-    "/src/assets/gif/3.gif",
-    "/src/assets/gif/4.gif",
-  ];
-
-  useEffect(() => {
-    if (quizStarted) {
-      // Set the initial background image immediately when the quiz starts
-      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-      document.documentElement.style.setProperty(
-        "--background-image",
-        `url(${initialGif})`
-      );
-
-      // Start the interval to change the background image every 3 seconds
-      const interval = setInterval(() => {
-        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-        document.documentElement.style.setProperty(
-          "--background-image",
-          `url(${randomGif})`
-        );
-      }, 3000); // Change every 3 seconds
-
-      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-    }
-  }, [quizStarted]); // Only run when quizStarted changes
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -191,33 +151,38 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   if (showVideo && !quizStarted) {
     return (
       <Container>
+        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
+        {/* {showVideo && ( */}
         <VideoContainer>
           <VideoWrapper>
-            <VideoTitle>Differents design of Specialty Cake</VideoTitle>
+            <VideoTitle>Different Designs of Petit Fours</VideoTitle>
             <iframe
               width="45%"
               height="80%"
-              src="https://www.youtube.com/embed/zSRdHcW8TLw?si=_50M5u-tZXGRwecG"
+              src="https://www.youtube.com/embed/T-AKfxMVo2o?rel=0"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
           <VideoWrapper>
-            <VideoTitle>Example of Specialty Cake</VideoTitle>
+            <VideoTitle>How to Make Petit Fours</VideoTitle>
             <iframe
               width="45%"
               height="80%"
-              src="https://www.youtube.com/embed/x-H4xifwzc8"
+              src="https://www.youtube.com/embed/M5NOHVp2lPE?rel=0"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
+        {/* )} */}
       </Container>
     );
   }
@@ -225,41 +190,30 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   if (showOverview && !quizStarted) {
     return (
       <Container>
-        <h2>Specialty Cake Overview</h2>
+        <h2>Petit four Overview</h2>
         <p>
-          This lesson covers the essential techniques and skills involved in the
-          preparation, assembly, and decoration of specialty cakes, which are
-          crucial in the bread and pastry industry. Specialty cakes are
-          intricate and highly detailed cakes used for special occasions such as
-          weddings, birthdays, and other celebrations. The skills required to
-          create these cakes include proper baking techniques, filling,
-          frosting, and decoration, all of which will be explored in this
-          module.
+          Petit fours are small, bite-sized confections that originated in
+          France and are traditionally served as part of dessert or with tea.
+          The term "petit four" translates to "small oven," referencing the
+          traditional baking method used to make these delicate treats.
         </p>
         <p>
-          By the end of this lesson, students will have the practical skills to
-          design and create beautiful, flavorful specialty cakes, enhancing
-          their competencies as future pastry chefs or culinary professionals.
+          By the end of this Lesson, students will have the practical skills to
+          design and create beautiful, flavorful Petit four, enhancing their
+          competencies as future pastry chefs or culinary professionals.
         </p>
-        <h2>Introduction to Specialty Cakes</h2>
+        <h2>Introduction to Petit Four</h2>
         <p>
-          <strong>What are Specialty Cakes?</strong> Specialty cakes are
-          elaborately designed cakes tailored for special occasions, with unique
-          decorations and flavors. These cakes stand apart from regular cakes
-          because of their custom designs, use of premium ingredients, and
-          intricate preparation. A specialty cake is a unique, customized, or
-          elaborate cake designed to suit a specific occasion, theme, or dietary
-          preference. These cakes often showcase creativity, advanced baking
-          techniques, and intricate decorations, making them a centerpiece for
-          celebrations such as weddings, birthdays, anniversaries, or special
-          events.
-        </p>
-        <p>
-          Specialty cakes come in a wide variety of flavors, shapes, and
-          designs, ranging from multi-tiered wedding cakes adorned with fondant
-          flowers to themed birthday cakes featuring sculpted designs. They may
-          also include innovative techniques such as airbrushing, sugar work, or
-          edible printing.
+          What are Petit Four? Petit fours are delicate little cakes that
+          originated in France. Their name translates to “small oven” in English
+          as petit fours were baked with the residual heat of brick ovens used
+          for bread making in the past. The bakers would use the lower heat to
+          make pastries, and thus their name was coined. They are often sweet,
+          such as glazed cakes, macarons, or tartlets, but can also be savory,
+          like mini quiches or puff pastries. Petit fours are known for their
+          elegant presentation and intricate designs, making them popular at
+          weddings, tea parties, and special events. Their small size allows
+          them to be enjoyed as a light treat or a fancy appetizer.
         </p>
         <ProceedButton onClick={handleProceedToOverview2}>
           Proceed to Types
@@ -271,38 +225,28 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   if (showOverview2 && !quizStarted) {
     return (
       <Container>
-        <h2>Types of Specialty Cakes</h2>
+        <h2>Types of Petit Four:</h2>
         <p>
-          <strong>Layer Cakes:</strong> is a stack of multiple layers or sheets
-          of cake held together by some form of filling. The filling could be
-          anything decadent such as jam, frosting or cream. The type of cakes
-          that are typically used in layer cake are butter cakes or sponge
-          cakes. Popular flavor combinations include the German chocolate cake,
-          red velvet cake, Black Forest cake, and carrot cake with cream cheese
-          icing. Primarily used in special occasions such as Christian weddings,
-          layer cakes add a special touch to memorable events.  
+          <strong>1.Petit Fours Sec (Dry Petit Fours):</strong> These include
+          small, crispy baked goods like cookies, biscuits, and tuiles. They are
+          often unglazed and less sweet, typically enjoyed with tea or coffee.
         </p>
         <p>
-          <strong>Fondant Cakes:</strong> Fondant is an edible icing with a
-          pliable texture that can be rolled, shaped and sculpted. It's most
-          commonly used to decorate cakes, cupcakes and cookies. There are
-          different types of fondant, including rolled fondant, pour fondant,
-          chocolate fondant, sculpting fondant, marshmallow fondant and gumpaste
-          fondant.
+          <strong>2. Petit Fours Glacé (Glazed Petit Fours):</strong> These are
+          decorated, bite-sized cakes often covered in fondant or icing and
+          sometimes garnished with small decorations. Classic flavors include
+          vanilla, almond, chocolate, and lemon.
         </p>
         <p>
-          <strong>Mousse Cakes:</strong> Mousse cake is a type of dessert that
-          has an airy or fluffy texture. The word 'mousse' itself literally
-          translates to “foam” in French due to its really light structure. This
-          light texture can be achieved thanks to the folding technique, which
-          is the movement of gently folding in an “areator” onto a “base”.
+          <strong>3. Petit Fours Frais (Fresh Petit Fours):</strong> These
+          consist of fresh, perishable items, such as mini cream puffs, éclairs,
+          or fruit tarts. Often, they have creamy fillings like custard or
+          mousse and are usually refrigerated before serving.
         </p>
         <p>
-          <strong>Fruit Cakes:</strong> Fruitcake or fruit cake is a cake made
-          with candied or dried fruit, nuts, and spices, and optionally soaked
-          in spirits. In the United Kingdom, certain rich versions may be iced
-          and decorated. Also Cakes that use fruits as the main ingredient,
-          often used in celebrations and holidays.
+          <strong>4. Petit Fours Salé (Savory Petit Fours):</strong> While
+          traditionally sweets, petit fours can also be savory, including tiny
+          quiches, mini sandwiches, and other savory appetizers.
         </p>
         <ProceedButton onClick={handleShowVideo}>
           Proceed to Video
@@ -349,62 +293,47 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
           >
             {question.question}
           </Question>
-          <OptionsContainer>
-            {shuffledOptions.map((option, index) => {
-              const isSelected = selectedAnswer === option;
-              const isCorrect = option === question.answer;
-              const isIncorrect = isSelected && !isCorrect; // Incorrect if selected and not correct
 
-              return (
-                <OptionButton
-                  key={index}
-                  isSelected={isSelected}
-                  isCorrect={isCorrect}
-                  isIncorrect={isIncorrect}
-                  onClick={() => handleAnswer(option)}
-                >
-                  {option}
-                </OptionButton>
-              );
-            })}
+          <OptionsContainer>
+            {shuffledOptions.map((option, index) => (
+              <OptionButton
+                key={index}
+                onClick={() => handleAnswer(option)}
+                disabled={selectedAnswer !== null} // Disable options after answer is selected
+                isSelected={selectedAnswer === option}
+                isCorrect={isCorrect && selectedAnswer === option}
+                isIncorrect={!isCorrect && selectedAnswer === option}
+              >
+                {option}
+              </OptionButton>
+            ))}
           </OptionsContainer>
-          {selectedAnswer && (
-            <Result>{isCorrect ? "Correct!" : "Incorrect!"}</Result>
-          )}
+
           <NavigationButtons>
-            <Button onClick={handleNext}>Next</Button>
-            {/* {currentQuestion > 0 && (
-              <Button onClick={handlePrevious}>Previous</Button>
-            )} */}
+            <Button onClick={handlePrevious} disabled={currentQuestion === 0}>
+              Previous Question
+            </Button>
+            <Button
+              onClick={handleNext}
+              disabled={
+                selectedAnswer === null ||
+                currentQuestion === questions.length - 1
+              }
+            >
+              Next Question
+            </Button>
           </NavigationButtons>
         </motion.div>
       </Container>
     );
   }
 
-  if (quizCompleted) {
-    return (
-      <Container>
-        <h1>Congratulations, {userName}!</h1>
-        <p>You have completed the quiz.</p>
-        <ScoreDisplay>
-          Your final score is {score} out of {questions.length}
-        </ScoreDisplay>
-        <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
-      </Container>
-    );
-  }
-};
+  return null;
+}
 
 export default Module2;
 
 // Styled Components
-
-const Result = styled.div`
-  font-size: 18px;
-  margin-top: 20px;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -476,6 +405,13 @@ const ScoreDisplay = styled.h3`
   margin: 10px 0;
 `;
 
+const Question = styled(motion.h2)`
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: ${(props) =>
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
+`;
+
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -483,17 +419,8 @@ const OptionsContainer = styled.div`
 `;
 
 const OptionButton = styled.div`
-  background: ${(props) => {
-    if (props.isSelected) {
-      // If the answer is selected
-      if (props.isCorrect) {
-        return "#28a745"; // Green for correct
-      } else if (props.isIncorrect) {
-        return "#dc3545"; // Red for incorrect
-      }
-    }
-    return "#f39c12"; // Default color for unselected options
-  }};
+  background: ${(props) =>
+    props.isSelected ? (props.isCorrect ? "#28a745" : "#dc3545") : "#f39c12"};
   color: ${(props) => (props.isSelected ? "white" : "#333")};
   padding: 10px;
   margin: 5px 0;
@@ -503,7 +430,8 @@ const OptionButton = styled.div`
   transition: all 0.3s ease;
 
   &:hover {
-    background: #e2e6ea;
+    background: ${(props) =>
+      props.isSelected ? (props.isCorrect ? "#218838" : "#c82333") : "#e2e6ea"};
   }
 
   &:disabled {
@@ -512,16 +440,9 @@ const OptionButton = styled.div`
   }
 `;
 
-const Question = styled(motion.h2)`
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
-`;
-
 const NavigationButtons = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   width: 100%;
   margin-top: 20px;
 `;
