@@ -58,8 +58,8 @@ function App() {
             path="/modules/:moduleId"
             element={
               <ModulePage
-                quizStarted={quizStarted}
-                setQuizStarted={setQuizStarted}
+              // quizStarted={quizStarted}
+              // setQuizStarted={setQuizStarted}
               />
             }
           />
