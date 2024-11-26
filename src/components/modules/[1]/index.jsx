@@ -75,10 +75,10 @@ function Module1() {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(false);
+  const [showOverview, setShowOverview] = useState(true);
   const [showOverview2, setShowOverview2] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
-  const [showVideo, setShowVideo] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -134,8 +134,7 @@ function Module1() {
   };
 
   const handleShowUser = () => {
-    setShowOverview(false);
-    setShowOverview2(false);
+    setShowVideo(false);
     setShowUser(true);
   };
 
@@ -147,6 +146,12 @@ function Module1() {
   const resetAnswerState = () => {
     setSelectedAnswer(null);
     setIsCorrect(null);
+  };
+
+  const handleShowVideo = () => {
+    setShowVideo(true);
+    setShowOverview2(false);
+    setShowOverview(false);
   };
 
   const question = questions[currentQuestion];
@@ -171,7 +176,6 @@ function Module1() {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
           <VideoWrapper>
@@ -184,13 +188,10 @@ function Module1() {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              onEnded={handleVideoEnd}
             />
           </VideoWrapper>
         </VideoContainer>
-        <ProceedButton onClick={handleProceedToOverview}>
-          Proceed to Overview
-        </ProceedButton>
+        <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
         {/* )} */}
       </Container>
     );
@@ -278,7 +279,9 @@ function Module1() {
           and decorated. Also Cakes that use fruits as the main ingredient,
           often used in celebrations and holidays.
         </p>
-        <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
+        <ProceedButton onClick={handleShowVideo}>
+          Proceed to Video
+        </ProceedButton>
       </Container>
     );
   }
