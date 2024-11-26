@@ -1,7 +1,7 @@
 // About.js
 import React from "react";
 import { motion } from "framer-motion";
-import { handleClick } from "../utils/global";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import NavButton from "../button/NavButton";
 import "./styles.css"; // Make sure to define other styles in your CSS
 
@@ -21,12 +21,21 @@ function Home() {
         Advanced Baking Techniques and Master the Art of Culinary Precision.
       </span>
       <div className="nav-btn-container">
-        <NavButton label="About" onClick={() => handleClick("about")} />
-        <NavButton label="Modules" onClick={() => handleClick("modules")} />
-        <NavButton
-          label="Vision & Mission"
-          onClick={() => handleClick("vmission")}
-        />
+        <Link to="/about">
+          {" "}
+          {/* Replace handleClick with Link */}
+          <NavButton label="About" />
+        </Link>
+        <Link to="/modules">
+          {" "}
+          {/* Replace handleClick with Link */}
+          <NavButton label="Modules" />
+        </Link>
+        <Link to="/vmission">
+          {" "}
+          {/* Replace handleClick with Link */}
+          <NavButton label="Vision & Mission" />
+        </Link>
       </div>
     </motion.div>
   );
