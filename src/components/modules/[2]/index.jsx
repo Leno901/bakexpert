@@ -8,66 +8,57 @@ import gif4 from "../../../assets/gif/4.gif";
 
 const questions = [
   {
-    question:
-      "What is the term for a cake designed for a specific theme or occasion, often with elaborate decorations?",
-    answer: "Specialty Cake",
+    question: "Petit fours are typically characterized by their",
+    answer: "c) Delicate size and intricate decoration",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Large size",
+      "b) Savory flavor",
+      "c) Delicate size and intricate decoration",
+      "d) Use of only fruit fillings",
     ],
   },
   {
-    question:
-      "This type of cake is often layered with fillings like mousse, ganache, or buttercream. What is it?",
-    answer: "Layer Cake",
+    question: "What is the common size of a petit four?",
+    answer: "c) About the size of a bite or two",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Larger than a cupcake",
+      "b) About the size of a large cookie",
+      "c) About the size of a bite or two",
+      "d) As large as a standard layer cake",
     ],
   },
   {
-    question:
-      "Name the cake that frequently involves sculpting and is typically made for weddings, birthdays, or anniversaries.",
-    answer: "Custom Cake",
+    question: "Petit fours are often served:",
+    answer: "c) As a dessert or after-dinner treat",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) For breakfast",
+      "b) As a main course",
+      "c) As a dessert or after-dinner treat",
+      "d) As a savory appetizer",
     ],
   },
   {
-    question:
-      "What is the edible medium often used to cover specialty cakes for a smooth, polished appearance?",
-    answer: "Fondant",
+    question: "Which of these is NOT a common type of petit four?",
+    answer: "d) Petit fours au fromage (cheese)",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Petit fours secs",
+      "b) Petit fours glacés",
+      "c) Petit fours à la crème",
+      "d) Petit fours au fromage (cheese)",
     ],
   },
   {
-    question:
-      "Which specialty cake is commonly associated with towering tiers and intricate piping designs?",
-    answer: "Wedding Cake",
+    question: "Petit fours secs are typically:",
+    answer: "c) Dry, small cakes or cookies",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Cream filling",
+      "b) Icing-coated",
+      "c) Dry, small cakes or cookies",
+      "d) Fresh fruit",
     ],
   },
 ];
+
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);

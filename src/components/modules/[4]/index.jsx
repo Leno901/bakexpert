@@ -4,48 +4,57 @@ import styled from "styled-components";
 
 const questions = [
   {
-    question:
-      "What is the rolled sponge cake filled with cream or jam commonly called?",
-    answer: "Swiss Roll",
-    options: ["Swiss Roll", "Roulade", "Gâteau", "Bûche de Noël", "Strudel"],
-  },
-  {
-    question:
-      "What technique is essential to avoid cracking when rolling a Swiss roll?",
-    answer: "Rolling the sponge while warm",
+    question: "A Swiss roll is also called:",
+    answer: "d) All of the above",
     options: [
-      "Rolling the sponge while warm",
-      "Freezing before rolling",
-      "Adding extra flour",
-      "Using a rolling pin",
-      "Spreading extra filling",
+      "a) Jelly roll",
+      "b) Biscuit roll",
+      "c) Sponge roll",
+      "d) All of the above",
     ],
   },
   {
-    question:
-      "Name the dessert often decorated to resemble a log for Christmas celebrations.",
-    answer: "Bûche de Noël",
+    question: "The core component of a Swiss roll is:",
+    answer: "c) Thin sponge cake",
     options: [
-      "Bûche de Noël",
-      "Mille-feuille",
-      "Tarte Tatin",
-      "Opera Cake",
-      "Swiss Roll",
+      "a) Choux pastry",
+      "b) Puff pastry",
+      "c) Thin sponge cake",
+      "d) Shortbread crust",
     ],
   },
   {
-    question:
-      "What ingredient helps create the soft and pliable texture of a Swiss roll sponge?",
-    answer: "Eggs",
-    options: ["Eggs", "Butter", "Milk", "Baking Soda", "Cornstarch"],
+    question: "What is the common shape of a Swiss roll?",
+    answer: "c) Rectangular",
+    options: [
+      "a) Round",
+      "b) Square",
+      "c) Rectangular",
+      "d) Triangular",
+    ],
   },
   {
-    question:
-      "Which term refers to the filling of a Swiss roll that can range from whipped cream to fruit spreads?",
-    answer: "Filling",
-    options: ["Filling", "Ganache", "Icing", "Buttercream", "Custard"],
+    question: "What is commonly used to fill a Swiss roll?",
+    answer: "c) Whipped cream, jam, or other fillings",
+    options: [
+      "a) Only whipped cream",
+      "b) Only jam",
+      "c) Whipped cream, jam, or other fillings",
+      "d) Only chocolate ganache",
+    ],
+  },
+  {
+    question: "The sponge cake for a Swiss roll is typically baked in what type of pan?",
+    answer: "c) Rectangular baking sheet",
+    options: [
+      "a) Bundt pan",
+      "b) Springform pan",
+      "c) Rectangular baking sheet",
+      "d) Muffin tin",
+    ],
   },
 ];
+
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);

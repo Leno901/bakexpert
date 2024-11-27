@@ -4,60 +4,57 @@ import styled from "styled-components";
 
 const questions = [
   {
-    question:
-      "What is the French term for a rich, multi-layered cake, often filled with cream or fruit?",
-    answer: "Gâteau",
-    options: ["Gâteau", "Tarte", "Petit Four", "Macaron", "Clafoutis"],
-  },
-  {
-    question:
-      "Which type of gâteaux typically features a light sponge cake soaked in syrup and layered with cream?",
-    answer: "Gâteau Moelleux",
+    question: "What is a gateau?",
+    answer: "b) A type of French pastry",
     options: [
-      "Gâteau Moelleux",
-      "Gâteau Sec",
-      "Gâteau Glacé",
-      "Tarte Tatin",
-      "Mille-feuille",
+      "a) A type of French bread",
+      "b) A type of French pastry",
+      "c) A type of French cheese",
+      "d) A type of French soup",
     ],
   },
   {
-    question:
-      'Name the famous gâteaux made with layers of puff pastry and cream, known as "Napoleon" in English.',
-    answer: "Mille-feuille",
+    question: "Gateaux are generally characterized by:",
+    answer: "c) Their elaborate decoration and presentation",
     options: [
-      "Mille-feuille",
-      "Opera Cake",
-      "Tartelette",
-      "Éclair",
-      "Clafoutis",
+      "a) Their savory flavor",
+      "b) Their small size",
+      "c) Their elaborate decoration and presentation",
+      "d) Their use of only fruit fillings",
     ],
   },
   {
-    question:
-      "What is the difference between a gâteau and a tart in terms of their crust?",
-    answer: "Gâteau uses cake-like base; tart uses pastry crust",
+    question: "Of the following, WHAT IS NOT normally a gateau?",
+    answer: "b) Croissant",
     options: [
-      "Gâteau uses cake-like base; tart uses pastry crust",
-      "Both have cake-like bases",
-      "Both have pastry crusts",
-      "Tart uses sponge layers; gâteau uses cream layers",
-      "No difference",
+      "a) Opera Cake",
+      "b) Croissant",
+      "c) Saint-Honoré Cake",
+      "d) Charlotte Cake",
     ],
   },
   {
-    question:
-      "Which type of gâteaux is traditionally served during French celebrations, such as Christmas?",
-    answer: "Bûche de Noël",
+    question: "Most gateaux contain:",
+    answer: "b) Layers of cake and filling",
     options: [
-      "Bûche de Noël",
-      "Mille-feuille",
-      "Clafoutis",
-      "Tarte Tatin",
-      "Gâteau Glacé",
+      "a) Plain, rough textures",
+      "b) Layers of cake and filling",
+      "c) A single flavor profile",
+      "d) Little decoration",
+    ],
+  },
+  {
+    question: "What ingredient do many gateaux have in common?",
+    answer: "b) Butter",
+    options: [
+      "a) Potatoes",
+      "b) Butter",
+      "c) Cheese",
+      "d) Bread",
     ],
   },
 ];
+
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);

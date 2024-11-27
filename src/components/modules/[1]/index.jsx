@@ -8,66 +8,57 @@ import gif4 from "../../../assets/gif/4.gif";
 
 const questions = [
   {
-    question:
-      "What is the term for a cake designed for a specific theme or occasion, often with elaborate decorations?",
-    answer: "Specialty Cake",
+    question: "Which ingredient is NOT usually used in a traditional chiffon cake?",
+    answer: "c) Butter",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Vegetable oil",
+      "b) Cake flour",
+      "c) Butter",
+      "d) Egg whites",
     ],
   },
   {
-    question:
-      "This type of cake is often layered with fillings like mousse, ganache, or buttercream. What is it?",
-    answer: "Layer Cake",
+    question: "Which of the following cakes has a moist crumb and intense chocolate flavor?",
+    answer: "c) Devil's food cake",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Angel food cake",
+      "b) Pound cake",
+      "c) Devil's food cake",
+      "d) Sponge cake",
     ],
   },
   {
-    question:
-      "Name the cake that frequently involves sculpting and is typically made for weddings, birthdays, or anniversaries.",
-    answer: "Custom Cake",
+    question: "What is defining about a 'drip cake'?",
+    answer: "b) A ganache or frosting drip down the sides",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Multiple layers",
+      "b) A ganache or frosting drip down the sides",
+      "c) A sculpted design",
+      "d) A fruit filling",
     ],
   },
   {
-    question:
-      "What is the edible medium often used to cover specialty cakes for a smooth, polished appearance?",
-    answer: "Fondant",
+    question: "Which type of cake is typically used for celebrations and usually has multiple tiers?",
+    answer: "d) Wedding cake",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Cupcake",
+      "b) Layer cake",
+      "c) Sheet cake",
+      "d) Wedding cake",
     ],
   },
   {
-    question:
-      "Which specialty cake is commonly associated with towering tiers and intricate piping designs?",
-    answer: "Wedding Cake",
+    question: "What is commonly applied to make thin designs and ornamentation on specialty cakes?",
+    answer: "d) All of the above",
     options: [
-      "Specialty Cake",
-      "Layer Cake",
-      "Custom Cake",
-      "Fondant",
-      "Wedding Cake",
+      "a) Food coloring",
+      "b) Fondant",
+      "c) Piping bag",
+      "d) All of the above",
     ],
   },
 ];
+
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
