@@ -5,9 +5,22 @@
   place-content: center;
 }
 
+.module-btn-test {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ffa500; /* Orange button background */
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
 .module-btn-container h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: black;
 }
 
 .btn-group {
@@ -16,11 +29,17 @@
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+  }
+}
+
 .module-btn {
   padding: 10px 20px;
   font-size: 1.2rem;
   background-color: #ffa500; /* Orange button background */
-  color: white;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -29,4 +48,194 @@
 
 .module-btn:hover {
   background-color: #ff8500; /* Slightly darker orange on hover */
+}
+
+/* General container styles */
+.word-scramble-container {
+  align-content: center;
+  place-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 90vh;
+}
+
+.game-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #d1d5db;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.message-container {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  padding: 0.5rem;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.bg-green {
+  background-color: #48bb78;
+}
+
+.bg-red {
+  background-color: #f87171;
+}
+
+.bg-yellow {
+  background-color: #fbbf24;
+}
+
+/* Title styles */
+.title {
+  width: 100%;
+  background-color: #2d3748;
+  color: white;
+  text-align: center;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+}
+
+/* Content section styles */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Word and input display styles */
+.word-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.word-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.letter-box {
+  background-color: #cbd5e1;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  text-align: center;
+}
+
+.scrambled-word {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  background-color: #fbbf24;
+  padding: 25px;
+}
+
+/* Input section styles */
+.input-container {
+  margin-top: 1.25rem;
+}
+
+.input-field {
+  border: 1px solid #4b5563;
+  padding: 0.5rem;
+  outline: none;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
+
+.submit-btn {
+  background-color: #1f2937;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #4b5563;
+}
+
+/* Start and New Game Button styles */
+.start-game,
+.new-game {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.start-btn,
+.new-game-btn {
+  background-color: #2d3748;
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.start-btn:hover,
+.new-game-btn:hover {
+  background-color: #4b5563;
+}
+
+@media (max-width: 768px) {
+  .game-box {
+    width: 80%;
+  }
+}
+
+.category-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+.category-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 50%;
+  height: 50%;
+}
+
+.category-image {
+  max-width: 100%;
+  width: 50%;
+  height: 50%;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 10px;
 }

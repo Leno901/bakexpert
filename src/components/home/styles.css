@@ -7,12 +7,19 @@
   min-width: 320px; /* Minimum width for responsiveness */
   min-height: 90vh; /* Full height of viewport */
   text-align: center; /* Center align text */
+  color: black;
 }
 
 .home-h1 {
   font-size: 8rem; /* Larger heading size */
   font-weight: bold;
   margin-bottom: 1rem; /* Spacing below heading */
+}
+
+@media (max-width: 768px) {
+  .home-h1 {
+    font-size: 4rem; /* Larger heading size */
+  }
 }
 
 .line-with-circle {
@@ -22,7 +29,7 @@
   margin: 1.5rem 0; /* Spacing above and below */
   position: relative;
   height: 1px;
-  background-color: #ccc; /* Line color */
+  background-color: #0a0101; /* Line color */
   width: 80%; /* Slightly narrower for better alignment */
 }
 
@@ -55,7 +62,7 @@
 
 .nav-btn-container button {
   background-color: #ffa500; /* Orange button background */
-  color: white; /* White text */
+  color: black; /* White text */
   border: none;
   border-radius: 5px; /* Rounded corners */
   padding: 0.8rem 1.5rem; /* Adjust padding */

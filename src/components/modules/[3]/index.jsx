@@ -5,11 +5,15 @@ import gif1 from "../../../assets/gif/1.gif";
 import gif2 from "../../../assets/gif/2.gif";
 import gif3 from "../../../assets/gif/3.gif";
 import gif4 from "../../../assets/gif/4.gif";
+import img1 from "../../../assets/image/gateaux1.png";
+import img2 from "../../../assets/image/gateaux2.png";
+import img3 from "../../../assets/image/gateaux3.png";
 
 const questions = [
   {
     question: "What is a gateau?",
     answer: "b) A type of French pastry",
+
     options: [
       "a) A type of French bread",
       "b) A type of French pastry",
@@ -20,6 +24,7 @@ const questions = [
   {
     question: "Gateaux are generally characterized by:",
     answer: "c) Their elaborate decoration and presentation",
+
     options: [
       "a) Their savory flavor",
       "b) Their small size",
@@ -40,6 +45,7 @@ const questions = [
   {
     question: "Most gateaux contain:",
     answer: "b) Layers of cake and filling",
+
     options: [
       "a) Plain, rough textures",
       "b) Layers of cake and filling",
@@ -50,15 +56,10 @@ const questions = [
   {
     question: "What ingredient do many gateaux have in common?",
     answer: "b) Butter",
-    options: [
-      "a) Potatoes",
-      "b) Butter",
-      "c) Cheese",
-      "d) Bread",
-    ],
+
+    options: ["a) Potatoes", "b) Butter", "c) Cheese", "d) Bread"],
   },
 ];
-
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -72,6 +73,9 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [showOverview, setShowOverview] = useState(true);
   const [showOverview2, setShowOverview2] = useState(false);
+  const [showOverview3, setShowOverview3] = useState(false);
+  const [showOverview4, setShowOverview4] = useState(false);
+  const [showOverview5, setShowOverview5] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
@@ -79,27 +83,27 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
 
   const gifs = [gif1, gif2, gif3, gif4];
 
-  useEffect(() => {
-    if (quizStarted) {
-      // Set the initial background image immediately when the quiz starts
-      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-      document.documentElement.style.setProperty(
-        "--background-image",
-        `url(${initialGif})`
-      );
+  // useEffect(() => {
+  //   if (quizStarted) {
+  //     // Set the initial background image immediately when the quiz starts
+  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+  //     document.documentElement.style.setProperty(
+  //       "--background-image",
+  //       `url(${initialGif})`
+  //     );
 
-      // Start the interval to change the background image every 3 seconds
-      const interval = setInterval(() => {
-        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-        document.documentElement.style.setProperty(
-          "--background-image",
-          `url(${randomGif})`
-        );
-      }, 3000); // Change every 3 seconds
+  //     // Start the interval to change the background image every 3 seconds
+  //     const interval = setInterval(() => {
+  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+  //       document.documentElement.style.setProperty(
+  //         "--background-image",
+  //         `url(${randomGif})`
+  //       );
+  //     }, 3000); // Change every 3 seconds
 
-      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-    }
-  }, [quizStarted]); // Only run when quizStarted changes
+  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+  //   }
+  // }, [quizStarted]); // Only run when quizStarted changes
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -161,6 +165,21 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
     setShowOverview2(true);
   };
 
+  const handleProceedToOverview3 = () => {
+    setShowOverview2(false);
+    setShowOverview3(true);
+  };
+
+  const handleProceedToOverview4 = () => {
+    setShowOverview3(false);
+    setShowOverview4(true);
+  };
+
+  const handleProceedToOverview5 = () => {
+    setShowOverview4(false);
+    setShowOverview5(true);
+  };
+
   const resetAnswerState = () => {
     setSelectedAnswer(null);
     setIsCorrect(null);
@@ -168,8 +187,8 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
 
   const handleShowVideo = () => {
     setShowVideo(true);
-    setShowOverview2(false);
-    setShowOverview(false);
+    setShowOverview5(false);
+    setShowOverview4(false);
   };
 
   const question = questions[currentQuestion];
@@ -181,38 +200,33 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
   if (showVideo && !quizStarted) {
     return (
       <Container>
-        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
-        {/* {showVideo && ( */}
         <VideoContainer>
-        <VideoWrapper>
-              <VideoTitle>Different Designs of Petit Fours</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/A1Gm38BXE-Q"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
-            <VideoWrapper>
-              <VideoTitle>How to Make Petit Fours</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/Mm_dervvQSk"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
+          <VideoWrapper>
+            <VideoTitle>Difference between Cake and Gateau </VideoTitle>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/A1Gm38BXE-Q"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </VideoWrapper>
+          <VideoWrapper>
+            <VideoTitle>Example of Gateau</VideoTitle>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/Mm_dervvQSk"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </VideoWrapper>
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
-        {/* )} */}
       </Container>
     );
   }
@@ -222,15 +236,51 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
       <Container>
         <h2>Gateaux Overview</h2>
         <p>
-        A gâteau (plural: gâteaux) is a rich, elaborate French cake often layered and decorated with luxurious ingredients. Unlike simpler cakes, gâteaux are typically distinguished by intricate designs, refined flavors, and complex techniques, making them a staple in French patisserie and a highlight at special occasions.
+          A gâteau (plural: gâteaux) is a rich, elaborate French cake often
+          layered and decorated with luxurious ingredients. Unlike simpler
+          cakes, gâteaux are typically distinguished by intricate designs,
+          refined flavors, and complex techniques, making them a staple in
+          French patisserie and a highlight at special occasions.
         </p>
         <p>
-        By the end of this Lesson, students will have the practical skills to design and create beautiful, flavorful Gateaux, enhancing their competencies as future pastry chefs or culinary professionals.
+          By the end of this lesson, students will have the practical skills to
+          design and create beautiful, flavorful gâteaux, enhancing their
+          competencies as future pastry chefs or culinary professionals.
         </p>
+
+        <h2>Module Objectives</h2>
+        <ul>
+          <li>
+            Define Gateaux and describe their significance in the culinary and
+            baking industries.
+          </li>
+          <li>
+            Identify different types of Gateaux and their core ingredients.
+          </li>
+          <li>
+            Apply advanced techniques for baking, filling, frosting, and
+            decorating Gateaux.
+          </li>
+          <li>
+            Evaluate the quality of Gateaux based on texture, flavor, and
+            aesthetic presentation.
+          </li>
+          <li>
+            Demonstrate skills in cake design by creating a Gateaux using
+            industry-standard techniques.
+          </li>
+        </ul>
+
         <h2>Introduction to Gateaux</h2>
         <p>
-        What are Gâteaux? Gâteaux are elaborate, often luxurious cakes that are a hallmark of French pastry. The word "gâteau" translates to "cake" in French, but it typically refers to more refined and multi-layered desserts than the everyday cake. These cakes often feature sophisticated flavors, rich textures, and intricate designs, making them popular choices for celebrations and special occasions.
+          What are Gâteaux? Gâteaux are elaborate, often luxurious cakes that
+          are a hallmark of French pastry. The word "gâteau" translates to
+          "cake" in French, but it typically refers to more refined and
+          multi-layered desserts than the everyday cake. These cakes often
+          feature sophisticated flavors, rich textures, and intricate designs,
+          making them popular choices for celebrations and special occasions.
         </p>
+
         <ProceedButton onClick={handleProceedToOverview2}>
           Proceed to Types
         </ProceedButton>
@@ -241,20 +291,157 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
   if (showOverview2 && !quizStarted) {
     return (
       <Container>
-        <h2>Types of Gateaux :</h2>
+        <h2>Types of Gateaux</h2>
+
+        <GateauxType>
+          <img src={img1} alt="Classic French Gâteaux" />
+          <p>
+            <strong>Classic French Gâteaux:</strong> These include well-known
+            types like
+            <em> Gâteau Opera</em> (coffee and chocolate layers),
+            <em> Gâteau St. Honoré</em> (choux pastry with cream and caramel),
+            and
+            <em> Gâteau Fraisier</em> (strawberry and cream cake).
+          </p>
+        </GateauxType>
+
+        <GateauxType>
+          <img src={img2} alt="Regional Gâteaux" />
+          <p>
+            <strong>Regional Gâteaux:</strong> Certain gâteaux are tied to
+            specific French regions, like
+            <em> Gâteau Basque</em> (with almond cream or cherry filling) and
+            <em> Gâteau Breton</em> (a buttery cake from Brittany).
+          </p>
+        </GateauxType>
+
+        <GateauxType>
+          <img src={img3} alt="Modern Gâteaux" />
+          <p>
+            <strong>Modern Gâteaux:</strong> Contemporary patisseries have
+            adapted traditional gâteaux with global flavors, new ingredients, or
+            updated presentations.
+          </p>
+        </GateauxType>
+
+        <ProceedButton onClick={handleProceedToOverview3}>
+          Proceed to Key Ingredients
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview3 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Key Ingredients and Tools for Gateaux</h2>
+
+        <h2>Core Ingredients:</h2>
+        <ul>
+          <li>
+            <strong>Sponge Cake Bases:</strong> Many gâteaux use light sponge
+            cakes like genoise or joconde as the structural foundation.
+          </li>
+          <li>
+            <strong>Mousses and Creams:</strong> Chocolate, vanilla, or
+            fruit-flavored mousses add smoothness and richness.
+          </li>
+          <li>
+            <strong>Ganache and Buttercream:</strong> These are used both for
+            layering and decorating.
+          </li>
+          <li>
+            <strong>Fruit and Nuts:</strong> Fresh or preserved fruits like
+            strawberries, raspberries, and cherries, along with nuts like
+            almonds and hazelnuts, add natural sweetness and texture.
+          </li>
+          <li>
+            <strong>Liqueurs and Extracts:</strong> Liqueurs like Grand Marnier,
+            kirsch, or rum are often incorporated for flavor.
+          </li>
+        </ul>
+
+        <h2>Decorating Ingredients:</h2>
         <p>
-          <strong>1. Classic French Gâteaux:</strong>  Include well-known types like Gâteau Opera (coffee and chocolate layers), Gâteau St. Honoré (choux pastry with cream and caramel), and Gâteau Fraisier (strawberry and cream cake).
+          Buttercream Frosting, Ganache, Fondant, Whipped Cream, and Mousse.
+          Edible Flowers, Chocolate Decorations, Fondant Figures.
         </p>
+
+        <h2>Essential Tools:</h2>
+        <ul>
+          <li>Cake Pans (round, square, or custom shapes)</li>
+          <li>Mixing Bowls, Electric Mixers, Spatulas</li>
+          <li>Piping Bags and Tips (for decorating)</li>
+          <li>Cake Turntable (for even decoration)</li>
+          <li>Cooling Racks (for proper cake cooling)</li>
+        </ul>
+
+        <ProceedButton onClick={handleProceedToOverview4}>
+          Proceed to Techniques
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview4 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Cake Decoration Techniques</h2>
+
+        <h3>Layering and Filling:</h3>
+        <p>Requires precision to create even, visually appealing layers.</p>
+
+        <h3>Glazing and Coating:</h3>
         <p>
-          <strong>2. Regional Gâteaux:</strong> Certain gâteaux are tied to specific French regions, like Gâteau Basque (with almond cream or cherry filling) and Gâteau Breton (a buttery cake from Brittany).
+          Many gâteaux are finished with a smooth layer of ganache, glaze, or
+          buttercream.
         </p>
+
+        <h3>Decorating:</h3>
         <p>
-          <strong>3. Modern Gâteaux:</strong> Contemporary patisseries have adapted traditional gâteaux with global flavors, new ingredients, or updated presentations.
+          Detailed decoration, such as chocolate piping, edible flowers, and
+          glaze designs, is key to achieving the sophisticated appearance
+          typical of gâteaux.
         </p>
+
+        <h2>Evaluating Gâteaux</h2>
+
+        <h3>Texture and Moisture:</h3>
         <p>
-          <strong>4. Petit Fours Salé (Savory Petit Fours):</strong> While
-          traditionally sweets, petit fours can also be savory, including tiny
-          quiches, mini sandwiches, and other savory appetizers.
+          Evaluate the lightness and fluffiness of the gâteaux. Ensure the cake
+          does not feel dry or crumbly.
+        </p>
+
+        <h3>Flavor Balance:</h3>
+        <p>
+          Check the balance between the sweetness of the frosting and the flavor
+          of the cake. For instance, rich cakes like chocolate should pair well
+          with lighter fillings like whipped cream or mousse.
+        </p>
+
+        <ProceedButton onClick={handleProceedToOverview5}>
+          Proceed to Evaluating
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview5 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Evaluating Gâteaux</h2>
+
+        <h3>Texture and Moisture:</h3>
+        <p>
+          Evaluate the lightness and fluffiness of the gâteaux. Ensure the cake
+          does not feel dry or crumbly.
+        </p>
+
+        <h3>Flavor Balance:</h3>
+        <p>
+          Check the balance between the sweetness of the frosting and the flavor
+          of the cake. For instance, rich cakes like chocolate should pair well
+          with lighter fillings like whipped cream or mousse.
         </p>
         <ProceedButton onClick={handleShowVideo}>
           Proceed to Video
@@ -272,6 +459,10 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
           placeholder="Enter your name"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
+          style={{
+            width: "50%",
+            padding: "10px", // Adjust the padding as needed
+          }}
         />
         <ProceedButton onClick={handleStartQuiz}>Start Quiz</ProceedButton>
       </Container>
@@ -360,36 +551,132 @@ const Result = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 65vh;
+  align-items: ${({ showOverview3 }) => (showOverview3 ? "center" : "")};
+  justify-content: ${({ showUser }) => (showUser ? "center" : "flex-start")};
+  height: 70vh;
   position: relative;
   padding: 20px;
+  width: 70%;
+  text-align: left;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+
+  @media (max-width: 1024px) {
+    width: 80%;
+    padding: 15px;
+    height: 75vh;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 75vh;
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px;
+  }
+
+  /* Scrollbar styles for Webkit browsers */
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  /* For Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+`;
+
+const GateauxType = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+  img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 10px;
+      width: 50%;
+    }
+  }
+
+  p {
+    flex: 1;
+
+    @media (max-width: 768px) {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const VideoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   width: 100%;
-  height: 80vh;
-  margin-bottom: 20px;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    gap: 15px;
+  }
 `;
 
 const VideoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
+  width: 100%;
+  max-width: 800px; /* Optional: Limit max width */
+  height: 85vh;
+`;
+
+const VideoFrame = styled.div`
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000; /* Optional: Placeholder background for loading */
+  border-radius: 10px; /* Optional: Rounded corners */
+  overflow: hidden;
+  margin-top: 10px; /* Adds spacing between title and video */
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 `;
 
 const VideoTitle = styled.h3`
-  font-size: 1.2rem;
   margin-bottom: 10px;
-  color: white;
+  text-align: center;
+  font-size: 18px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const ProceedButton = styled.button`
-  background: #6c757d;
+  background: #000000;
   color: white;
   border: none;
   border-radius: 5px;
@@ -468,7 +755,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
 `;
 
 const NavigationButtons = styled.div`

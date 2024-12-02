@@ -6,8 +6,8 @@ import About from "./components/about/About";
 import Modules from "./components/modules/Modules";
 import ModulePage from "./components/modules/Modulepage";
 import Vmission from "./components/vmission/VMission";
-import bg from "./assets/image/baking.jpg";
-
+import bg from "./assets/image/abstract-bg.jpg";
+import WordScramble from "./components/modules/Pretest";
 function App() {
   const [quizStarted, setQuizStarted] = useState(false); // State to track quiz status
 
@@ -55,6 +55,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/vmission" element={<Vmission />} />
+          <Route path="/pretest" element={<WordScramble />} />
           <Route
             path="/modules/:moduleId"
             element={

@@ -41,8 +41,6 @@
 }
 
 .nav-landing {
-  background-color: #333; /* Dark background for the header */
-  color: white; /* White text color */
   padding: 1rem 2rem; /* Add padding around the header */
   display: flex; /* Flexbox for layout */
   justify-content: center; /* Center content horizontally */
@@ -58,6 +56,12 @@
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .nav-landing ul {
+    gap: 2rem; /* Increased space between items */
+  }
+}
+
 .nav-landing li {
   font-size: 1.2rem; /* Base font size for all items */
 }
@@ -68,7 +72,7 @@
 }
 
 .nav-landing a {
-  color: white; /* White link color */
+  color: black; /* White link color */
   text-decoration: none; /* Remove underline */
   transition: color 0.3s; /* Smooth transition for hover effect */
 }

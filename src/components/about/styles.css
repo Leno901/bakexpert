@@ -30,6 +30,8 @@
 
 .abt-content-desc {
   font-size: 2rem;
+  color: black;
+  font-weight: 500;
 }
 
 .abt-h1 {
@@ -54,6 +56,8 @@
 h1 {
   font-size: 2rem; /* Base font size */
   /* text-align: center; Center the heading for better responsiveness */
+  color: black;
+  padding-top: 2rem;
 }
 
 p {

@@ -5,6 +5,11 @@ import gif1 from "../../../assets/gif/1.gif";
 import gif2 from "../../../assets/gif/2.gif";
 import gif3 from "../../../assets/gif/3.gif";
 import gif4 from "../../../assets/gif/4.gif";
+import img1 from "../../../assets/image/qb1.png";
+import img2 from "../../../assets/image/qb2.png";
+import img3 from "../../../assets/image/qb3.png";
+import img4 from "../../../assets/image/qb4.png";
+import img5 from "../../../assets/image/qb5.png";
 
 const questions = [
   {
@@ -69,6 +74,9 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   const [shuffledOptions, setShuffledOptions] = useState([]);
   const [showOverview, setShowOverview] = useState(true);
   const [showOverview2, setShowOverview2] = useState(false);
+  const [showOverview3, setShowOverview3] = useState(false);
+  const [showOverview4, setShowOverview4] = useState(false);
+  const [showOverview5, setShowOverview5] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
@@ -76,27 +84,27 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
 
   const gifs = [gif1, gif2, gif3, gif4];
 
-  useEffect(() => {
-    if (quizStarted) {
-      // Set the initial background image immediately when the quiz starts
-      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-      document.documentElement.style.setProperty(
-        "--background-image",
-        `url(${initialGif})`
-      );
+  // useEffect(() => {
+  //   if (quizStarted) {
+  //     // Set the initial background image immediately when the quiz starts
+  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+  //     document.documentElement.style.setProperty(
+  //       "--background-image",
+  //       `url(${initialGif})`
+  //     );
 
-      // Start the interval to change the background image every 3 seconds
-      const interval = setInterval(() => {
-        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-        document.documentElement.style.setProperty(
-          "--background-image",
-          `url(${randomGif})`
-        );
-      }, 3000); // Change every 3 seconds
+  //     // Start the interval to change the background image every 3 seconds
+  //     const interval = setInterval(() => {
+  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+  //       document.documentElement.style.setProperty(
+  //         "--background-image",
+  //         `url(${randomGif})`
+  //       );
+  //     }, 3000); // Change every 3 seconds
 
-      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-    }
-  }, [quizStarted]); // Only run when quizStarted changes
+  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+  //   }
+  // }, [quizStarted]); // Only run when quizStarted changes
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -158,6 +166,21 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
     setShowOverview2(true);
   };
 
+  const handleProceedToOverview3 = () => {
+    setShowOverview2(false);
+    setShowOverview3(true);
+  };
+
+  const handleProceedToOverview4 = () => {
+    setShowOverview3(false);
+    setShowOverview4(true);
+  };
+
+  const handleProceedToOverview5 = () => {
+    setShowOverview4(false);
+    setShowOverview5(true);
+  };
+
   const resetAnswerState = () => {
     setSelectedAnswer(null);
     setIsCorrect(null);
@@ -165,8 +188,8 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
 
   const handleShowVideo = () => {
     setShowVideo(true);
-    setShowOverview2(false);
-    setShowOverview(false);
+    setShowOverview5(false);
+    setShowOverview4(false);
   };
 
   const question = questions[currentQuestion];
@@ -178,38 +201,33 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   if (showVideo && !quizStarted) {
     return (
       <Container>
-        {/* <ProceedButton onClick={handleStartQuiz}>Proceed to Quiz</ProceedButton> */}
-        {/* {showVideo && ( */}
         <VideoContainer>
-            <VideoWrapper>
-              <VideoTitle>Introduction to Quick Breads</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/Oy6bQWgf1yE?rel=0"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
-            <VideoWrapper>
-              <VideoTitle>How to make Quick Bread (muffin)</VideoTitle>
-              <iframe
-                width="45%"
-                height="80%"
-                src="https://www.youtube.com/embed/3Ho9ivMWhho?rel=0"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </VideoWrapper>
-          </VideoContainer>
+          <VideoWrapper>
+            <VideoTitle>Introduction to Quick Breads</VideoTitle>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/Oy6bQWgf1yE?rel=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </VideoWrapper>
+          <VideoWrapper>
+            <VideoTitle>How to make Quick Bread (muffin)</VideoTitle>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/3Ho9ivMWhho?rel=0"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </VideoWrapper>
+        </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
-        {/* )} */}
       </Container>
     );
   }
@@ -219,13 +237,44 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
       <Container>
         <h2>Quick Bread Overview</h2>
         <p>
-        Quick bread is a type of bread that is made without yeast, instead relying on leavening agents like baking powder or baking soda to help it rise. This makes quick breads much faster to prepare than traditional yeast breads, as they do not require time for proofing or rising. Quick breads can be sweet or savory and are commonly enjoyed as breakfast items, snacks, or desserts.</p>
-        <p>
-        By the end of this Lesson, students will have the practical skills to create beautiful Quick bread, enhancing their competencies as future pastry chefs or culinary professionals.
+          Quick bread is a type of bread that is made without yeast, instead
+          relying on leavening agents like baking powder or baking soda to help
+          it rise. This makes quick breads much faster to prepare than
+          traditional yeast breads, as they do not require time for proofing or
+          rising. Quick breads can be sweet or savory and are commonly enjoyed
+          as breakfast items, snacks, or desserts.
         </p>
+        <p>
+          By the end of this lesson, students will have the practical skills to
+          create beautiful Quick bread, enhancing their competencies as future
+          pastry chefs or culinary professionals.
+        </p>
+
+        <h2>Module Objectives</h2>
+        <ul>
+          <li>
+            Define Quick bread and describe their significance in the culinary
+            and baking industries.
+          </li>
+          <li>
+            Identify different types of Quick bread and their core ingredients.
+          </li>
+          <li>Apply advanced techniques for baking Quick bread.</li>
+          <li>
+            Evaluate the quality of Quick bread on texture, flavor, and
+            aesthetic presentation.
+          </li>
+        </ul>
+
         <h2>Introduction to Quick Bread</h2>
         <p>
-        What is  Quick bread? Quick bread is any bread leavened with a chemical leavening agent rather than a biological one like yeast or sourdough starter. An advantage of quick breads is their ability to be prepared quickly and reliably, without requiring the time-consuming skilled labor and the climate control needed for traditional yeast breads.</p>
+          What is Quick bread? Quick bread is any bread leavened with a chemical
+          leavening agent rather than a biological one like yeast or sourdough
+          starter. An advantage of quick breads is their ability to be prepared
+          quickly and reliably, without requiring the time-consuming skilled
+          labor and the climate control needed for traditional yeast breads.
+        </p>
+
         <ProceedButton onClick={handleProceedToOverview2}>
           Proceed to Types
         </ProceedButton>
@@ -236,19 +285,160 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   if (showOverview2 && !quizStarted) {
     return (
       <Container>
-        <h2>Types of Enriched Bread :</h2>
+        <h2>Popular Types of Quick Bread</h2>
+
+        <QBType>
+          <img src={img1} alt="Banana Bread" />
+          <p>
+            <strong>Banana Bread:</strong> A sweet, moist bread made with mashed
+            bananas, often with added nuts or chocolate chips.
+          </p>
+        </QBType>
+
+        <QBType>
+          <img src={img2} alt="Zucchini Bread" />
+          <p>
+            <strong>Zucchini Bread:</strong> A moist, sweet bread made with
+            grated zucchini and often flavored with spices like cinnamon.
+          </p>
+        </QBType>
+
+        <QBType>
+          <img src={img3} alt="Cornbread" />
+          <p>
+            <strong>Cornbread:</strong> A savory quick bread made with cornmeal,
+            often served as a side with soups, chili, or barbecue.
+          </p>
+        </QBType>
+
+        <QBType>
+          <img src={img4} alt="Scones" />
+          <p>
+            <strong>Scones:</strong> A British-inspired bread, either sweet or
+            savory, that’s often served with tea or coffee.
+          </p>
+        </QBType>
+
+        <QBType>
+          <img src={img5} alt="Muffins" />
+          <p>
+            <strong>Muffins:</strong> Individual quick breads that are similar
+            to cupcakes, available in both sweet and savory varieties.
+          </p>
+        </QBType>
+
+        <ProceedButton onClick={handleProceedToOverview3}>
+          Proceed to Key Ingredients
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview3 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Key Ingredients and Tools for Quick Bread</h2>
+
+        <h2>Core Ingredients:</h2>
+        <ul>
+          <li>
+            <strong>Flour:</strong> All-purpose flour is commonly used, but some
+            recipes use whole wheat, cornmeal, or gluten-free flours.
+          </li>
+          <li>
+            <strong>Leavening Agents (Baking Soda or Baking Powder):</strong>{" "}
+            These ingredients release gas when mixed or baked, causing the bread
+            to rise quickly.
+          </li>
+          <li>
+            <strong>Liquid (Milk, Buttermilk, or Yogurt):</strong> Adds moisture
+            and helps activate the leavening agents. Buttermilk or yogurt also
+            adds acidity, which works well with baking soda.
+          </li>
+          <li>
+            <strong>Fat (Butter, Oil, or Shortening):</strong> Adds richness and
+            helps create a tender texture.
+          </li>
+          <li>
+            <strong>Eggs:</strong> Eggs provide structure, add moisture, and
+            help with leavening by trapping air in the batter.
+          </li>
+        </ul>
+
+        <h2>Essential Tools:</h2>
+        <ul>
+          <li>Cake Pans (round, square, or custom shapes)</li>
+          <li>Mixing Bowls, Electric Mixers, Spatulas</li>
+          <li>Piping Bags and Tips (for decorating)</li>
+          <li>Cake Turntable (for even decoration)</li>
+          <li>Cooling Racks (for proper cake cooling)</li>
+        </ul>
+
+        <ProceedButton onClick={handleProceedToOverview4}>
+          Proceed to Techniques
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview4 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Techniques for Making Quick Bread</h2>
+
+        <h3>Mixing Method:</h3>
         <p>
-          <strong>1. Banana Bread:</strong>  A sweet, moist bread made with mashed bananas, often with added nuts or chocolate chips.
+          Often uses the "muffin method," where dry and wet ingredients are
+          mixed separately and then combined just until incorporated to avoid
+          overmixing.
         </p>
+
+        <h3>Gentle Stirring:</h3>
         <p>
-          <strong>2. Zucchini Bread:</strong> A moist, sweet bread made with grated zucchini and often flavored with spices like cinnamon.
+          Quick bread batters should be mixed gently to avoid developing too
+          much gluten, which can make the bread tough.
         </p>
+
+        <h3>Immediate Baking:</h3>
         <p>
-          <strong>3. Cornbread:</strong> A savory quick bread made with cornmeal, often served as a side with soups, chili, or barbecue.
+          Once mixed, the batter should be baked immediately so the chemical
+          leavening agents can act before they lose potency.
         </p>
+
+        <ProceedButton onClick={handleProceedToOverview5}>
+          Proceed to Next Section
+        </ProceedButton>
+      </Container>
+    );
+  }
+
+  if (showOverview5 && !quizStarted) {
+    return (
+      <Container>
+        <h2>Evaluating Quick Bread</h2>
+
+        <h3>Texture and Moisture:</h3>
         <p>
-          <strong>4. Scones:</strong> A British-inspired bread, either sweet or savory, that’s often served with tea or coffee.
+          Evaluate the lightness and fluffiness of the Quick Bread. Ensure the
+          bread does not feel dry or crumbly.
         </p>
+
+        <h3>Flavor Balance:</h3>
+        <p>Check the flavor balance of Quick Bread.</p>
+
+        <h3>Presentation:</h3>
+        <p>Assess the cleanliness and precision of the Quick Bread.</p>
+
+        <h2>Assessment Activities</h2>
+
+        <h3>Practical Task:</h3>
+        <p>
+          Students will bake, assemble, and decorate their own Quick Bread using
+          at least three techniques demonstrated during the module. The breads
+          will be assessed for quality based on texture, flavor, and
+          presentation.
+        </p>
+
         <ProceedButton onClick={handleShowVideo}>
           Proceed to Video
         </ProceedButton>
@@ -265,6 +455,10 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
           placeholder="Enter your name"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
+          style={{
+            width: "50%",
+            padding: "10px", // Adjust the padding as needed
+          }}
         />
         <ProceedButton onClick={handleStartQuiz}>Start Quiz</ProceedButton>
       </Container>
@@ -281,7 +475,7 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1>Swiss roll Quiz</h1>
+          <h1>Quick Bread Quiz</h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -353,36 +547,132 @@ const Result = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 65vh;
+  align-items: ${({ showOverview3 }) => (showOverview3 ? "center" : "")};
+  justify-content: ${({ showUser }) => (showUser ? "center" : "flex-start")};
+  height: 70vh;
   position: relative;
   padding: 20px;
+  width: 70%;
+  text-align: left;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+
+  @media (max-width: 1024px) {
+    width: 80%;
+    padding: 15px;
+    height: 75vh;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 75vh;
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px;
+  }
+
+  /* Scrollbar styles for Webkit browsers */
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  /* For Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+`;
+
+const QBType = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+  img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 10px;
+      width: 50%;
+    }
+  }
+
+  p {
+    flex: 1;
+
+    @media (max-width: 768px) {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const VideoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   width: 100%;
-  height: 80vh;
-  margin-bottom: 20px;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    gap: 15px;
+  }
 `;
 
 const VideoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
+  width: 100%;
+  max-width: 800px; /* Optional: Limit max width */
+  height: 85vh;
+`;
+
+const VideoFrame = styled.div`
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000; /* Optional: Placeholder background for loading */
+  border-radius: 10px; /* Optional: Rounded corners */
+  overflow: hidden;
+  margin-top: 10px; /* Adds spacing between title and video */
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 `;
 
 const VideoTitle = styled.h3`
-  font-size: 1.2rem;
   margin-bottom: 10px;
-  color: white;
+  text-align: center;
+  font-size: 18px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const ProceedButton = styled.button`
-  background: #6c757d;
+  background: #000000;
   color: white;
   border: none;
   border-radius: 5px;
@@ -461,7 +751,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
 `;
 
 const NavigationButtons = styled.div`

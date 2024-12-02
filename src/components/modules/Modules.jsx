@@ -33,6 +33,17 @@ function Modules() {
             </motion.div>
           ))}
         </div>
+        <motion.div
+          variants={buttonVariants}
+          initial="initial"
+          animate="animate"
+          whileHover="hover"
+          transition={{ type: "spring", stiffness: 50, delay: 0.6 }} // Slight delay for the pretest button
+        >
+          <Link to="/pretest">
+            <button className="module-btn-test">Pre-test</button>
+          </Link>
+        </motion.div>
       </div>
     </motion.div>
   );
