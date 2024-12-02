@@ -7,7 +7,7 @@ import Modules from "./components/modules/Modules";
 import ModulePage from "./components/modules/Modulepage";
 import Vmission from "./components/vmission/VMission";
 import bg from "./assets/image/abstract-bg.jpg";
-import PreTest from "./components/modules/Pretest";
+import PreTest from "./components/modules/PreTest";
 
 function App() {
   const [quizStarted, setQuizStarted] = useState(false); // State to track quiz status
