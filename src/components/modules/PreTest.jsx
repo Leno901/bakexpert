@@ -34,7 +34,7 @@ const CATEGORY_IMAGES = {
   "Scramble Words": spcake,
 };
 
-function WordScramble() {
+function PreTest() {
   const [correctWord, setCorrectWord] = useState("");
   const [scrambledWord, setScramledWord] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -194,4 +194,4 @@ function WordScramble() {
   );
 }
 
-export default WordScramble;
+export default PreTest;
