@@ -403,7 +403,18 @@ const Container = styled.div`
   height: 65vh;
   position: relative;
   padding: 20px;
+  width: 70%;
+  text-align: left;
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+    overflow-y: scroll;
+  }
 `;
+
+
+
+
 
 const VideoContainer = styled.div`
   display: flex;
