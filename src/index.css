@@ -83,3 +83,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* For Firefox */
+scrollbar-width: none;
+-ms-overflow-style: none;

@@ -9,60 +9,58 @@ import img1 from "../../../assets/image/foursec.png";
 import img2 from "../../../assets/image/fourglace.png";
 import img3 from "../../../assets/image/fourfrais.png";
 import img4 from "../../../assets/image/foursale.png";
+import CategoryGame from "../../CategoryGame";
+import { CATEGORY_DATA } from "../../categories";
 
 const questions = [
   {
-    question: "Petit fours are typically characterized by their",
-    answer: "c) Delicate size and intricate decoration",
-
+    question:
+      "What is the term for a small, bite-sized cake or confection often served with tea or as a dessert?",
+    answer: "a) Petit four",
     options: [
-      "a) Large size",
-      "b) Savory flavor",
-      "c) Delicate size and intricate decoration",
-      "d) Use of only fruit fillings",
+      "a) Petit four",
+      "b) Danish pastry",
+      "c) Doughnut",
+      "d) Biscotti",
     ],
   },
   {
-    question: "What is the common size of a petit four?",
-    answer: "c) About the size of a bite or two",
-
+    question:
+      "These are glazed mini cakes, often coated in fondant or icing. What are they called?",
+    answer: "a) Glazed petit four",
+    options: ["a) Glazed petit four", "b) Macaron", "c) Eclair", "d) Tartlet"],
+  },
+  {
+    question:
+      "Name the type of petit four that is made from puff pastry and filled with sweet or savory ingredients.",
+    answer: "a) Vol-au-vent",
     options: [
-      "a) Larger than a cupcake",
-      "b) About the size of a large cookie",
-      "c) About the size of a bite or two",
-      "d) As large as a standard layer cake",
+      "a) Vol-au-vent",
+      "b) Swiss roll",
+      "c) Croissant",
+      "d) Opera cake",
     ],
   },
   {
-    question: "Petit fours are often served:",
-    answer: "c) As a dessert or after-dinner treat",
+    question:
+      "Which French term translates to 'small oven,' referring to these tiny confections?",
+    answer: "a) Petit four",
     options: [
-      "a) For breakfast",
-      "b) As a main course",
-      "c) As a dessert or after-dinner treat",
-      "d) As a savory appetizer",
+      "a) Petit four",
+      "b) Mille-feuille",
+      "c) Gâteau",
+      "d) Bûche de Noël",
     ],
   },
   {
-    question: "Which of these is NOT a common type of petit four?",
-    answer: "d) Petit fours au fromage (cheese)",
-
+    question:
+      "What category of petit fours includes almond-based treats like macarons?",
+    answer: "a) Petit four sec",
     options: [
-      "a) Petit fours secs",
-      "b) Petit fours glacés",
-      "c) Petit fours à la crème",
-      "d) Petit fours au fromage (cheese)",
-    ],
-  },
-  {
-    question: "Petit fours secs are typically:",
-    answer: "c) Dry, small cakes or cookies",
-
-    options: [
-      "a) Cream filling",
-      "b) Icing-coated",
-      "c) Dry, small cakes or cookies",
-      "d) Fresh fruit",
+      "a) Petit four sec",
+      "b) Glazed petit four",
+      "c) Vol-au-vent",
+      "d) Tart",
     ],
   },
 ];
@@ -77,7 +75,8 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showPretest, setShowPretest] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showOverview2, setShowOverview2] = useState(false);
   const [showOverview3, setShowOverview3] = useState(false);
   const [showOverview4, setShowOverview4] = useState(false);
@@ -86,30 +85,66 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
-
+  const categoryName = "Petit Fours";
+  const categoryData = CATEGORY_DATA[categoryName];
   const gifs = [gif1, gif2, gif3, gif4];
 
-  // useEffect(() => {
-  //   if (quizStarted) {
-  //     // Set the initial background image immediately when the quiz starts
-  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //     document.documentElement.style.setProperty(
-  //       "--background-image",
-  //       `url(${initialGif})`
-  //     );
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
 
-  //     // Start the interval to change the background image every 3 seconds
-  //     const interval = setInterval(() => {
-  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //       document.documentElement.style.setProperty(
-  //         "--background-image",
-  //         `url(${randomGif})`
-  //       );
-  //     }, 3000); // Change every 3 seconds
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
 
-  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-  //   }
-  // }, [quizStarted]); // Only run when quizStarted changes
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -156,14 +191,14 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
     setQuizStarted(true);
   };
 
-  const handleProceedToOverview = () => {
-    setShowVideo(false);
-    setShowOverview(true);
-  };
-
   const handleShowUser = () => {
     setShowVideo(false);
     setShowUser(true);
+  };
+
+  const handleProceedToOverview = () => {
+    setShowPretest(false);
+    setShowOverview(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -234,6 +269,17 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
       </Container>
+    );
+  }
+
+  if (showPretest && !quizStarted) {
+    return (
+      <div>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Discussion
+        </ProceedButton>
+        <CategoryGame category={categoryName} data={categoryData} />
+      </div>
     );
   }
 
@@ -480,8 +526,17 @@ const Module2 = ({ quizStarted, setQuizStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            color: "white",
+          }}
         >
-          <h1>Petit Four Quiz</h1>
+          <h1
+            style={{
+              color: "white",
+            }}
+          >
+            Petit Four Quiz
+          </h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -687,8 +742,8 @@ const ProceedButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 30px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -759,7 +814,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
 `;
 
 const NavigationButtons = styled.div`

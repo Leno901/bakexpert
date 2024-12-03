@@ -8,56 +8,55 @@ import gif4 from "../../../assets/gif/4.gif";
 import img1 from "../../../assets/image/gateaux1.png";
 import img2 from "../../../assets/image/gateaux2.png";
 import img3 from "../../../assets/image/gateaux3.png";
+import CategoryGame from "../../CategoryGame";
+import { CATEGORY_DATA } from "../../categories";
 
 const questions = [
   {
-    question: "What is a gateau?",
-    answer: "b) A type of French pastry",
-
+    question:
+      "What is the French term for a rich, multi-layered cake, often filled with cream or fruit?",
+    answer: "a) Gâteau",
+    options: ["a) Gâteau", "b) Eclair", "c) Tart", "d) Cheesecake"],
+  },
+  {
+    question:
+      "Which type of gâteaux typically features a light sponge cake soaked in syrup and layered with cream?",
+    answer: "a) Opera cake",
+    options: ["a) Opera cake", "b) Pie", "c) Muffin", "d) Croissant"],
+  },
+  {
+    question:
+      "Name the famous gâteaux made with layers of puff pastry and cream, known as 'Napoleon' in English.",
+    answer: "a) Mille-feuille",
     options: [
-      "a) A type of French bread",
-      "b) A type of French pastry",
-      "c) A type of French cheese",
-      "d) A type of French soup",
+      "a) Mille-feuille",
+      "b) Gateau",
+      "c) Swiss roll",
+      "d) Petit four",
     ],
   },
   {
-    question: "Gateaux are generally characterized by:",
-    answer: "c) Their elaborate decoration and presentation",
-
+    question:
+      "What is the difference between a gâteau and a tart in terms of their crust?",
+    answer:
+      "a) Gâteaux are soft and multi-layered, tarts have a single firm crust",
     options: [
-      "a) Their savory flavor",
-      "b) Their small size",
-      "c) Their elaborate decoration and presentation",
-      "d) Their use of only fruit fillings",
+      "a) Gâteaux are soft and multi-layered, tarts have a single firm crust",
+      "b) Gâteaux have a crustless base, tarts have multiple layers",
+      "c) Gâteaux are dry, tarts are filled with cream",
+      "d) Both are identical in terms of crust",
     ],
   },
   {
-    question: "Of the following, WHAT IS NOT normally a gateau?",
-    answer: "b) Croissant",
+    question:
+      "Which type of gâteaux is traditionally served during French celebrations, such as Christmas?",
+    answer: "a) Bûche de Noël",
     options: [
-      "a) Opera Cake",
-      "b) Croissant",
-      "c) Saint-Honoré Cake",
-      "d) Charlotte Cake",
+      "a) Bûche de Noël",
+      "b) Tartlet",
+      "c) Banana bread",
+      "d) Vol-au-vent",
     ],
-  },
-  {
-    question: "Most gateaux contain:",
-    answer: "b) Layers of cake and filling",
-
-    options: [
-      "a) Plain, rough textures",
-      "b) Layers of cake and filling",
-      "c) A single flavor profile",
-      "d) Little decoration",
-    ],
-  },
-  {
-    question: "What ingredient do many gateaux have in common?",
-    answer: "b) Butter",
-
-    options: ["a) Potatoes", "b) Butter", "c) Cheese", "d) Bread"],
   },
 ];
 
@@ -71,7 +70,8 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showPretest, setShowPretest] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showOverview2, setShowOverview2] = useState(false);
   const [showOverview3, setShowOverview3] = useState(false);
   const [showOverview4, setShowOverview4] = useState(false);
@@ -80,30 +80,101 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
-
+  const categoryName = "Gâteaux";
+  const categoryData = CATEGORY_DATA[categoryName];
   const gifs = [gif1, gif2, gif3, gif4];
 
-  // useEffect(() => {
-  //   if (quizStarted) {
-  //     // Set the initial background image immediately when the quiz starts
-  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //     document.documentElement.style.setProperty(
-  //       "--background-image",
-  //       `url(${initialGif})`
-  //     );
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
 
-  //     // Start the interval to change the background image every 3 seconds
-  //     const interval = setInterval(() => {
-  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //       document.documentElement.style.setProperty(
-  //         "--background-image",
-  //         `url(${randomGif})`
-  //       );
-  //     }, 3000); // Change every 3 seconds
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
 
-  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-  //   }
-  // }, [quizStarted]); // Only run when quizStarted changes
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -150,14 +221,14 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
     setQuizStarted(true);
   };
 
-  const handleProceedToOverview = () => {
-    setShowVideo(false);
-    setShowOverview(true);
-  };
-
   const handleShowUser = () => {
     setShowVideo(false);
     setShowUser(true);
+  };
+
+  const handleProceedToOverview = () => {
+    setShowPretest(false);
+    setShowOverview(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -228,6 +299,17 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
       </Container>
+    );
+  }
+
+  if (showPretest && !quizStarted) {
+    return (
+      <div>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Discussion
+        </ProceedButton>
+        <CategoryGame category={categoryName} data={categoryData} />
+      </div>
     );
   }
 
@@ -478,8 +560,17 @@ const Module3 = ({ quizStarted, setQuizStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            color: "white",
+          }}
         >
-          <h1>Gateaux Quiz</h1>
+          <h1
+            style={{
+              color: "white",
+            }}
+          >
+            Gateaux Quiz
+          </h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -683,8 +774,8 @@ const ProceedButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 30px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -755,7 +846,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
 `;
 
 const NavigationButtons = styled.div`

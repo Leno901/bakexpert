@@ -10,55 +10,44 @@ import img2 from "../../../assets/image/qb2.png";
 import img3 from "../../../assets/image/qb3.png";
 import img4 from "../../../assets/image/qb4.png";
 import img5 from "../../../assets/image/qb5.png";
+import CategoryGame from "../../CategoryGame";
+import { CATEGORY_DATA } from "../../categories";
 
 const questions = [
   {
     question:
       "What is the term for bread made without yeast, relying on baking soda or baking powder for leavening?",
-    answer: "Quick Bread",
+    answer: "a) Quick bread",
     options: [
-      "Quick Bread",
-      "Sourdough",
-      "Flatbread",
-      "Rye Bread",
-      "Whole Grain",
+      "a) Quick bread",
+      "b) Enriched bread",
+      "c) Sourdough",
+      "d) Ciabatta",
     ],
   },
   {
     question:
       "Name the quick bread that is often flavored with bananas and nuts.",
-    answer: "Banana Bread",
-    options: [
-      "Banana Bread",
-      "Zucchini Bread",
-      "Pumpkin Bread",
-      "Cornbread",
-      "Carrot Bread",
-    ],
+    answer: "a) Banana bread",
+    options: ["a) Banana bread", "b) Cornbread", "c) Muffin", "d) Biscotti"],
   },
   {
     question:
       "What type of quick bread is commonly baked in a muffin tin and served at breakfast?",
-    answer: "Muffins",
-    options: ["Muffins", "Scones", "Biscuits", "Pancakes", "Popovers"],
+    answer: "a) Muffins",
+    options: ["a) Muffins", "b) Soda bread", "c) Croissant", "d) Brioche"],
   },
   {
     question:
       "What ingredient in quick bread provides the acid needed to activate baking soda?",
-    answer: "Buttermilk",
-    options: ["Buttermilk", "Lemon Juice", "Vinegar", "Yogurt", "Honey"],
+    answer: "a) Buttermilk",
+    options: ["a) Buttermilk", "b) Butter", "c) Sugar", "d) Egg yolks"],
   },
   {
     question:
       "Name the Irish quick bread that uses baking soda and buttermilk as its primary leavening agents.",
-    answer: "Soda Bread",
-    options: [
-      "Soda Bread",
-      "Brown Bread",
-      "Potato Bread",
-      "Oat Bread",
-      "Wheaten Bread",
-    ],
+    answer: "a) Soda bread",
+    options: ["a) Soda bread", "b) Shortbread", "c) Pita bread", "d) Eclair"],
   },
 ];
 
@@ -72,7 +61,8 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showPretest, setShowPretest] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showOverview2, setShowOverview2] = useState(false);
   const [showOverview3, setShowOverview3] = useState(false);
   const [showOverview4, setShowOverview4] = useState(false);
@@ -81,30 +71,101 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
-
+  const categoryName = "Quick Bread";
+  const categoryData = CATEGORY_DATA[categoryName];
   const gifs = [gif1, gif2, gif3, gif4];
 
-  // useEffect(() => {
-  //   if (quizStarted) {
-  //     // Set the initial background image immediately when the quiz starts
-  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //     document.documentElement.style.setProperty(
-  //       "--background-image",
-  //       `url(${initialGif})`
-  //     );
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
 
-  //     // Start the interval to change the background image every 3 seconds
-  //     const interval = setInterval(() => {
-  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //       document.documentElement.style.setProperty(
-  //         "--background-image",
-  //         `url(${randomGif})`
-  //       );
-  //     }, 3000); // Change every 3 seconds
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
 
-  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-  //   }
-  // }, [quizStarted]); // Only run when quizStarted changes
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -151,14 +212,14 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
     setQuizStarted(true);
   };
 
-  const handleProceedToOverview = () => {
-    setShowVideo(false);
-    setShowOverview(true);
-  };
-
   const handleShowUser = () => {
     setShowVideo(false);
     setShowUser(true);
+  };
+
+  const handleProceedToOverview = () => {
+    setShowPretest(false);
+    setShowOverview(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -197,6 +258,17 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
   React.useEffect(() => {
     setShuffledOptions(shuffleArray([...questions[currentQuestion].options]));
   }, [currentQuestion]);
+
+  if (showPretest && !quizStarted) {
+    return (
+      <div>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Discussion
+        </ProceedButton>
+        <CategoryGame category={categoryName} data={categoryData} />
+      </div>
+    );
+  }
 
   if (showVideo && !quizStarted) {
     return (
@@ -474,8 +546,17 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            color: "white",
+          }}
         >
-          <h1>Quick Bread Quiz</h1>
+          <h1
+            style={{
+              color: "white",
+            }}
+          >
+            Quick Bread Quiz
+          </h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -679,8 +760,8 @@ const ProceedButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 30px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -751,7 +832,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
 `;
 
 const NavigationButtons = styled.div`

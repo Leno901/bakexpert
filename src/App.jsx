@@ -14,6 +14,10 @@ function App() {
 
   const handleResetQuiz = () => {
     setQuizStarted(false); // Reset quiz state
+
+    // Reset the background style
+    const navlanding = document.querySelectorAll("nav");
+    navlanding.style.background = ""; // Reset additional custom background styles
   };
 
   useEffect(() => {
@@ -28,7 +32,13 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div
+        className="App"
+        style={{
+          overflowY: "scroll",
+          maxHeight: "100vh",
+        }}
+      >
         {/* Navigation links */}
         <nav className="nav-landing">
           <ul>

@@ -1,58 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css"; // Import the CSS file
-import spcake from "../../assets/image/layer-cake.jpg";
-import pfour from "../../assets/image/fourfrais.png";
-import gcake from "../../assets/image/gateaux1.png";
-import sroll from "../../assets/image/swiss1.png";
-import eb from "../../assets/image/eb1.png";
-import qb from "../../assets/image/qb1.png";
+import "./styles.css";
 
-// New categories with words and their scrambled versions
-const WORDS = {
-  "Specialty Cake": [
-    "CHEESECAKE",
-    "BUTTERCREAM",
-    "CHARLOTTE",
-    "PORTIONING",
-    "DECORATION",
-  ],
-  "Petit Fours": ["PASTILLAGE", "ÉCLAIR", "GATEAUX", "MARZIPAN", "GLACÉE"],
-  Gâteaux: ["GANACHE", "CRÈME", "GATEAUX", "SPLIT", "DECORATION"],
-  "Swiss Roll": ["SWISS", "ROLL", "BUTTERCREAM", "GLAZING", "ROLLER"],
-  "Enriched Bread": ["ENRICHED", "BRIOCHE", "CHALLAH", "NANTERRE", "EGG WASH"],
-  "Quick Bread": ["MUFFIN", "SCONES", "BANANA BREAD", "BISCUIT", "SOAKING"],
-  "Scramble Words": ["BREAD", "CAKE", "COOKIE", "PIE", "CUPCAKE"],
-};
-
-const CATEGORY_IMAGES = {
-  "Specialty Cake": spcake,
-  "Petit Fours": pfour,
-  Gâteaux: gcake,
-  "Swiss Roll": sroll,
-  "Enriched Bread": eb,
-  "Quick Bread": qb,
-  "Scramble Words": spcake,
-};
-
-function PreTest() {
+function CategoryGame({ category, data }) {
   const [correctWord, setCorrectWord] = useState("");
-  const [scrambledWord, setScramledWord] = useState("");
+  const [scrambledWord, setScrambledWord] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [isPlayOn, setIsPlayOn] = useState(false);
   const [message, setMessage] = useState("");
   const [className, setClassName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Scramble Words"); // Default category
 
-  const selectCategory = () => {
-    const categories = Object.keys(WORDS);
-    const randomCategory =
-      categories[Math.floor(Math.random() * categories.length)];
-    setSelectedCategory(randomCategory);
-    return randomCategory;
-  };
-
-  const selectWord = (category) => {
-    const words = WORDS[category];
+  const selectWord = () => {
+    const words = data.words;
     const radIndex = Math.floor(Math.random() * words.length);
     return words[radIndex];
   };
@@ -66,19 +24,19 @@ function PreTest() {
 
     if (inputValue !== "") {
       if (correctWord === inputValue) {
-        setMessage("Correct Answer !");
+        setMessage("Correct Answer!");
         setClassName("bg-green");
 
         setInputValue("");
-        const word = selectWord(selectedCategory);
+        const word = selectWord();
         setCorrectWord(word.toUpperCase());
-        setScramledWord(constructScrambledWord(word));
+        setScrambledWord(constructScrambledWord(word));
       } else {
-        setMessage("Wrong Answer !!!");
+        setMessage("Wrong Answer!");
         setClassName("bg-red");
       }
     } else {
-      setMessage("Write a Word !!");
+      setMessage("Write a Word!");
       setClassName("bg-yellow");
     }
   };
@@ -97,13 +55,12 @@ function PreTest() {
 
   const handleStartGame = (e) => {
     e.preventDefault();
-    const category = selectCategory();
     setIsPlayOn(true);
     setInputValue("");
     setMessage("");
-    const word = selectWord(category);
+    const word = selectWord();
     setCorrectWord(word.toUpperCase());
-    setScramledWord(constructScrambledWord(word));
+    setScrambledWord(constructScrambledWord(word));
   };
 
   useEffect(() => {
@@ -123,18 +80,14 @@ function PreTest() {
       <div className="word-scramble-container">
         <div className="game-box">
           {/* Display Category Image */}
-          {selectedCategory && (
+          {data.image && (
             <div className="category-image-container">
-              <img
-                src={CATEGORY_IMAGES[selectedCategory]}
-                alt={selectedCategory}
-                className="category-image"
-              />
+              <img src={data.image} alt={category} className="category-image" />
             </div>
           )}
 
           {/* Display Category Name */}
-          <h1 className="title">CATEGORY: {selectedCategory}</h1>
+          <h1 className="title">CATEGORY: {category}</h1>
 
           {/* Display Game */}
           <div className="content-container">
@@ -194,4 +147,4 @@ function PreTest() {
   );
 }
 
-export default PreTest;
+export default CategoryGame;

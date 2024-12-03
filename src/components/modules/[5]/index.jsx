@@ -10,62 +10,49 @@ import img2 from "../../../assets/image/eb2.png";
 import img3 from "../../../assets/image/eb3.png";
 import img4 from "../../../assets/image/eb4.png";
 import img5 from "../../../assets/image/eb5.png";
+import CategoryGame from "../../CategoryGame";
+import { CATEGORY_DATA } from "../../categories";
 
 const questions = [
   {
-    question: "What makes a bread 'enriched'?",
-    answer: "b) The addition of fat, sugar, and/or eggs",
-
+    question:
+      "What is the term for bread made with added ingredients like eggs, milk, and sugar for a richer taste?",
+    answer: "a) Enriched bread",
     options: [
-      "a) The addition of water",
-      "b) The addition of fat, sugar, and/or eggs",
-      "c) The use of whole wheat flour",
-      "d) The use of sourdough starter",
-    ],
-  },
-  {
-    question: "Enriched breads generally have a:",
-    answer: "b) More tender and softer texture",
-
-    options: [
-      "a) Dry and crumbly texture",
-      "b) More tender and softer texture",
-      "c) Chewy texture",
-      "d) Dense and heavy texture",
+      "a) Enriched bread",
+      "b) Sourdough",
+      "c) Quick bread",
+      "d) Rye bread",
     ],
   },
   {
     question:
-      "Which of the following is NOT a characteristic of enriched bread?",
-    answer: "d) Very long fermentation time",
+      "Name the popular enriched bread known for its soft texture and braided appearance, often associated with Jewish cuisine.",
+    answer: "a) Challah",
+    options: ["a) Challah", "b) Brioche", "c) Croissant", "d) Focaccia"],
+  },
+  {
+    question:
+      "What enriched bread is traditionally baked in a ring shape and often served during Mardi Gras?",
+    answer: "a) King cake",
     options: [
-      "a) Increased shelf life",
-      "b) Richer flavor",
-      "c) Increased browning",
-      "d) Very long fermentation time",
+      "a) King cake",
+      "b) Banana bread",
+      "c) Muffin",
+      "d) Danish pastry",
     ],
   },
   {
-    question: "What kind of fat is commonly used in enriched bread?",
-    answer: "d) All of the above",
-
-    options: [
-      "a) Olive oil",
-      "b) Vegetable shortening",
-      "c) Butter",
-      "d) All of the above",
-    ],
+    question:
+      "Which ingredient is commonly used in enriched breads to give them a golden, shiny crust?",
+    answer: "a) Egg wash",
+    options: ["a) Egg wash", "b) Butter", "c) Sugar syrup", "d) Flour"],
   },
   {
-    question: "What does adding sugar do in enriched bread?",
-    answer: "b) Increases browning and flavor",
-
-    options: [
-      "a) Makes it healthier",
-      "b) Increases browning and flavor",
-      "c) Decreases the rise",
-      "d) Makes the dough harder to handle",
-    ],
+    question:
+      "What type of bread, originating from France, uses a high butter content to create its flaky texture?",
+    answer: "a) Brioche",
+    options: ["a) Brioche", "b) Scone", "c) Biscotti", "d) Baguette"],
   },
 ];
 
@@ -79,7 +66,8 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showPretest, setShowPretest] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showOverview2, setShowOverview2] = useState(false);
   const [showOverview3, setShowOverview3] = useState(false);
   const [showOverview4, setShowOverview4] = useState(false);
@@ -88,30 +76,101 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
-
+  const categoryName = "Enriched Bread";
+  const categoryData = CATEGORY_DATA[categoryName];
   const gifs = [gif1, gif2, gif3, gif4];
 
-  // useEffect(() => {
-  //   if (quizStarted) {
-  //     // Set the initial background image immediately when the quiz starts
-  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //     document.documentElement.style.setProperty(
-  //       "--background-image",
-  //       `url(${initialGif})`
-  //     );
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
 
-  //     // Start the interval to change the background image every 3 seconds
-  //     const interval = setInterval(() => {
-  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //       document.documentElement.style.setProperty(
-  //         "--background-image",
-  //         `url(${randomGif})`
-  //       );
-  //     }, 3000); // Change every 3 seconds
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
 
-  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-  //   }
-  // }, [quizStarted]); // Only run when quizStarted changes
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -158,14 +217,14 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     setQuizStarted(true);
   };
 
-  const handleProceedToOverview = () => {
-    setShowVideo(false);
-    setShowOverview(true);
-  };
-
   const handleShowUser = () => {
     setShowVideo(false);
     setShowUser(true);
+  };
+
+  const handleProceedToOverview = () => {
+    setShowPretest(false);
+    setShowOverview(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -236,6 +295,17 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
         </VideoContainer>
         <ProceedButton onClick={handleShowUser}>Proceed to Quiz</ProceedButton>
       </Container>
+    );
+  }
+
+  if (showPretest && !quizStarted) {
+    return (
+      <div>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Discussion
+        </ProceedButton>
+        <CategoryGame category={categoryName} data={categoryData} />
+      </div>
     );
   }
 
@@ -497,8 +567,17 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            color: "white",
+          }}
         >
-          <h1>Enriched Bread Quiz</h1>
+          <h1
+            style={{
+              color: "white",
+            }}
+          >
+            Enriched Bread Quiz
+          </h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -702,8 +781,8 @@ const ProceedButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 30px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -774,7 +853,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
 `;
 
 const NavigationButtons = styled.div`

@@ -10,60 +10,53 @@ import frcake from "../../../assets/image/fruit-cake.jpg";
 import lyrcake from "../../../assets/image/layer-cake.jpg";
 import mscake from "../../../assets/image/mousse-cake.jpg";
 import thmcake from "../../../assets/image/theme-cake.jpg";
+import CategoryGame from "../../CategoryGame";
+import { CATEGORY_DATA } from "../../categories";
 
 const questions = [
   {
     question:
-      "Which ingredient is NOT usually used in a traditional chiffon cake?",
-    answer: "c) Butter",
-    options: [
-      "a) Vegetable oil",
-      "b) Cake flour",
-      "c) Butter",
-      "d) Egg whites",
-    ],
-  },
-  {
-    question:
-      "Which of the following cakes has a moist crumb and intense chocolate flavor?",
-    answer: "c) Devil's food cake",
+      "What is the term for a cake designed for a specific theme or occasion, often with elaborate decorations?",
+    answer: "b) Specialty cake",
     options: [
       "a) Angel food cake",
-      "b) Pound cake",
-      "c) Devil's food cake",
-      "d) Sponge cake",
-    ],
-  },
-  {
-    question: "What is defining about a 'drip cake'?",
-    answer: "b) A ganache or frosting drip down the sides",
-    options: [
-      "a) Multiple layers",
-      "b) A ganache or frosting drip down the sides",
-      "c) A sculpted design",
-      "d) A fruit filling",
+      "b) Specialty cake",
+      "c) Cheesecake",
+      "d) Puff pastry",
     ],
   },
   {
     question:
-      "Which type of cake is typically used for celebrations and usually has multiple tiers?",
-    answer: "d) Wedding cake",
+      "This type of cake is often layered with fillings like mousse, ganache, or buttercream. What is it?",
+    answer: "a) Layer cake",
+    options: ["a) Layer cake", "b) Swiss roll", "c) Doughnut", "d) Pie"],
+  },
+  {
+    question:
+      "Name the cake that frequently involves sculpting and is typically made for weddings, birthdays, or anniversaries.",
+    answer: "a) Sculpted cake",
     options: [
-      "a) Cupcake",
-      "b) Layer cake",
-      "c) Sheet cake",
-      "d) Wedding cake",
+      "a) Sculpted cake",
+      "b) Petit four",
+      "c) Mille-feuille",
+      "d) Scone",
     ],
   },
   {
     question:
-      "What is commonly applied to make thin designs and ornamentation on specialty cakes?",
-    answer: "d) All of the above",
+      "What is the edible medium often used to cover specialty cakes for a smooth, polished appearance?",
+    answer: "a) Fondant",
+    options: ["a) Fondant", "b) Glaze", "c) Marzipan", "d) Cream cheese"],
+  },
+  {
+    question:
+      "Which specialty cake is commonly associated with towering tiers and intricate piping designs?",
+    answer: "a) Wedding cake",
     options: [
-      "a) Food coloring",
-      "b) Fondant",
-      "c) Piping bag",
-      "d) All of the above",
+      "a) Wedding cake",
+      "b) Swiss roll",
+      "c) Banana bread",
+      "d) Muffin",
     ],
   },
 ];
@@ -78,7 +71,8 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [showOverview, setShowOverview] = useState(true);
+  const [showPretest, setShowPretest] = useState(true);
+  const [showOverview, setShowOverview] = useState(false);
   const [showOverview2, setShowOverview2] = useState(false);
   const [showOverview3, setShowOverview3] = useState(false);
   const [showOverview4, setShowOverview4] = useState(false);
@@ -87,30 +81,67 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const categoryName = "Specialty Cake";
+  const categoryData = CATEGORY_DATA[categoryName];
 
   const gifs = [gif1, gif2, gif3, gif4];
 
-  // useEffect(() => {
-  //   if (quizStarted) {
-  //     // Set the initial background image immediately when the quiz starts
-  //     const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //     document.documentElement.style.setProperty(
-  //       "--background-image",
-  //       `url(${initialGif})`
-  //     );
+  useEffect(() => {
+    if (quizStarted) {
+      // Set the initial background image immediately when the quiz starts
+      const initialGif = gifs[Math.floor(Math.random() * gifs.length)];
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${initialGif})`
+      );
 
-  //     // Start the interval to change the background image every 3 seconds
-  //     const interval = setInterval(() => {
-  //       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-  //       document.documentElement.style.setProperty(
-  //         "--background-image",
-  //         `url(${randomGif})`
-  //       );
-  //     }, 3000); // Change every 3 seconds
+      // Start the interval to change the background image every 3 seconds
+      const interval = setInterval(() => {
+        const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+        document.documentElement.style.setProperty(
+          "--background-image",
+          `url(${randomGif})`
+        );
+      }, 3000); // Change every 3 seconds
 
-  //     return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
-  //   }
-  // }, [quizStarted]); // Only run when quizStarted changes
+      return () => clearInterval(interval); // Cleanup on unmount or when quiz is not started
+    }
+  }, [quizStarted]); // Only run when quizStarted changes
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
+    if (quizStarted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+
+    // Cleanup to avoid side effects if the component unmounts
+    return () => {
+      h1Elements.forEach((el) => {
+        el.style.color = "";
+      });
+    };
+  }, [quizStarted]);
 
   const handleVideoEnd = () => {
     setVideoCompleted(true);
@@ -157,14 +188,14 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
     setQuizStarted(true);
   };
 
-  const handleProceedToOverview = () => {
-    setShowVideo(false);
-    setShowOverview(true);
-  };
-
   const handleShowUser = () => {
     setShowVideo(false);
     setShowUser(true);
+  };
+
+  const handleProceedToOverview = () => {
+    setShowPretest(false);
+    setShowOverview(true);
   };
 
   const handleProceedToOverview2 = () => {
@@ -203,6 +234,17 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
   React.useEffect(() => {
     setShuffledOptions(shuffleArray([...questions[currentQuestion].options]));
   }, [currentQuestion]);
+
+  if (showPretest && !quizStarted) {
+    return (
+      <div>
+        <ProceedButton onClick={handleProceedToOverview}>
+          Proceed to Discussion
+        </ProceedButton>
+        <CategoryGame category={categoryName} data={categoryData} />
+      </div>
+    );
+  }
 
   if (showVideo && !quizStarted) {
     return (
@@ -554,8 +596,17 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
+          style={{
+            color: "white",
+          }}
         >
-          <h1>Specialty Cake Quiz</h1>
+          <h1
+            style={{
+              color: "white",
+            }}
+          >
+            Specialty Cake Quiz
+          </h1>
           <ScoreDisplay>
             {userName}'s Score: {score}
           </ScoreDisplay>
@@ -759,8 +810,8 @@ const ProceedButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 10px;
-  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 30px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -831,7 +882,7 @@ const Question = styled(motion.h2)`
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: ${(props) =>
-    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "black"};
+    props.isCorrect ? "#28a745" : props.isIncorrect ? "#dc3545" : "white"};
 `;
 
 const NavigationButtons = styled.div`
