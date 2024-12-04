@@ -115,6 +115,34 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
     const pElements = document.querySelectorAll("p");
     const navlanding = document.querySelectorAll("nav");
 
+    if (quizCompleted) {
+      h1Elements.forEach((el) => {
+        el.style.color = "white";
+      });
+      pElements.forEach((el) => {
+        el.style.color = "white";
+      });
+      navlanding.forEach((el) => {
+        el.style.background = "#f39c12";
+      });
+    } else {
+      h1Elements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      pElements.forEach((el) => {
+        el.style.color = ""; // Reset to default
+      });
+      navlanding.forEach((el) => {
+        el.style.background = ""; // Reset to default
+      });
+    }
+  }, [quizStarted]);
+
+  useEffect(() => {
+    const h1Elements = document.querySelectorAll("h1");
+    const pElements = document.querySelectorAll("p");
+    const navlanding = document.querySelectorAll("nav");
+
     if (quizStarted) {
       h1Elements.forEach((el) => {
         el.style.color = "white";
