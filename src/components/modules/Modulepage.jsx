@@ -28,7 +28,7 @@ export default function ModulePage({ quizStarted, setQuizStarted }) {
 
   return (
     <div>
-      <h1>Module {moduleId}</h1>
+      {/* <h1>Module {moduleId}</h1> */}
       {/* Render the selected component dynamically */}
       <ModuleComponent
         quizStarted={quizStarted}

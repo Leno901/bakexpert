@@ -12,6 +12,7 @@ import img4 from "../../../assets/image/eb4.png";
 import img5 from "../../../assets/image/eb5.png";
 import CategoryGame from "../../CategoryGame";
 import { CATEGORY_DATA } from "../../categories";
+import Assessment from "./Assessment";
 
 const questions = [
   {
@@ -76,6 +77,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
   const [showUser, setShowUser] = useState(false);
   const [userName, setUserName] = useState(""); // New state for user name
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showAssessment, setShowAssessment] = useState(false);
   const categoryName = "Enriched Bread";
   const categoryData = CATEGORY_DATA[categoryName];
   const gifs = [gif1, gif2, gif3, gif4];
@@ -258,13 +260,20 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     setShowOverview4(false);
   };
 
+  const handleShowAssessment = () => {
+    setShowAssessment(true); // Show the assessment
+    setQuizStarted(false); // Hide the quiz
+    setQuizCompleted(false); // Ensure quiz completion state is reset
+    resetAnswerState(); // Reset any answer states if needed
+  };
+
   const question = questions[currentQuestion];
 
   React.useEffect(() => {
     setShuffledOptions(shuffleArray([...questions[currentQuestion].options]));
   }, [currentQuestion]);
 
-  if (showVideo && !quizStarted) {
+  if (showVideo && !quizStarted && !showAssessment) {
     return (
       <Container>
         <VideoContainer>
@@ -298,7 +307,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showPretest && !quizStarted) {
+  if (showPretest && !quizStarted && !showAssessment) {
     return (
       <div>
         <ProceedButton onClick={handleProceedToOverview}>
@@ -309,7 +318,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showOverview && !quizStarted) {
+  if (showOverview && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Enriched Bread Overview</h2>
@@ -362,7 +371,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showOverview2 && !quizStarted) {
+  if (showOverview2 && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Types of Enriched Bread</h2>
@@ -417,7 +426,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showOverview3 && !quizStarted) {
+  if (showOverview3 && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Key Ingredients and Tools for Enriched Bread</h2>
@@ -484,7 +493,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showOverview4 && !quizStarted) {
+  if (showOverview4 && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Evaluating Enriched Bread</h2>
@@ -518,7 +527,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showOverview5 && !quizStarted) {
+  if (showOverview5 && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Evaluating Enriched Bread</h2>
@@ -539,7 +548,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (showUser && !quizStarted) {
+  if (showUser && !quizStarted && !showAssessment) {
     return (
       <Container>
         <h2>Enter Your Name</h2>
@@ -558,7 +567,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (quizStarted && !quizCompleted) {
+  if (quizStarted && !quizCompleted && !showAssessment) {
     return (
       <Container>
         <ResetButton onClick={handleReset}>Reset Quiz</ResetButton>
@@ -623,7 +632,7 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
     );
   }
 
-  if (quizCompleted) {
+  if (quizCompleted && !showAssessment) {
     return (
       <Container>
         <h1>Congratulations, {userName}!</h1>
@@ -632,9 +641,17 @@ const Module5 = ({ quizStarted, setQuizStarted }) => {
           Your final score is {score} out of {questions.length}
         </ScoreDisplay>
         <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
+        <ProceedButton onClick={handleShowAssessment}>Proceed to Assessment</ProceedButton>
       </Container>
     );
   }
+
+  if (showAssessment) {
+    return (
+      <Assessment/>
+    );
+  }
+
 };
 
 export default Module5;
