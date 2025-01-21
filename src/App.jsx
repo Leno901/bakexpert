@@ -15,7 +15,7 @@ import Vmission from "./components/vmission/VMission";
 import bg from "./assets/image/abstract-bg.jpg";
 import PreTest from "./components/modules/PreTest";
 import GameApp from "./components/game/GameApp"; // Import GameApp
-import games from "./components/game/game"; // Import games data
+import games from "./components/game/Game"; // Import games data
 
 function App() {
   const [quizStarted, setQuizStarted] = useState(false);
