@@ -7,7 +7,6 @@ import sroll from "../../assets/image/swiss1.png";
 import eb from "../../assets/image/eb1.png";
 import qb from "../../assets/image/qb1.png";
 
-// New categories with words and their scrambled versions
 const WORDS = {
   "Specialty Cake": [
     "CHEESECAKE",

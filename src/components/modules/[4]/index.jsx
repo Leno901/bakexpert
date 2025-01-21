@@ -13,7 +13,6 @@ import CategoryGame from "../../CategoryGame";
 import { CATEGORY_DATA } from "../../categories";
 import Assessment from "./Assessment";
 
-
 const questions = [
   {
     question:
@@ -639,17 +638,16 @@ const Module4 = ({ quizStarted, setQuizStarted }) => {
           Your final score is {score} out of {questions.length}
         </ScoreDisplay>
         <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
-        <ProceedButton onClick={handleShowAssessment}>Proceed to Assessment</ProceedButton>
+        <ProceedButton onClick={handleShowAssessment}>
+          Proceed to Assessment
+        </ProceedButton>
       </Container>
     );
   }
 
   if (showAssessment) {
-    return (
-      <Assessment/>
-    );
+    return <Assessment userName={userName} />;
   }
-  
 };
 
 export default Module4;

@@ -620,17 +620,16 @@ const Module6 = ({ quizStarted, setQuizStarted }) => {
           Your final score is {score} out of {questions.length}
         </ScoreDisplay>
         <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
-        <ProceedButton onClick={handleShowAssessment}>Proceed to Assessment</ProceedButton>
+        <ProceedButton onClick={handleShowAssessment}>
+          Proceed to Assessment
+        </ProceedButton>
       </Container>
     );
   }
 
   if (showAssessment) {
-    return (
-      <Assessment/>
-    );
+    return <Assessment userName={userName} />;
   }
-  
 };
 
 export default Module6;

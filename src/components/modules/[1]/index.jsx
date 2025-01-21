@@ -265,7 +265,6 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
     setQuizCompleted(false); // Ensure quiz completion state is reset
     resetAnswerState(); // Reset any answer states if needed
   };
-  
 
   const question = questions[currentQuestion];
 
@@ -699,15 +698,15 @@ const Module1 = ({ quizStarted, setQuizStarted }) => {
           Your final score is {score} out of {questions.length}
         </ScoreDisplay>
         <ProceedButton onClick={handleReset}>Try Again</ProceedButton>
-        <ProceedButton onClick={handleShowAssessment}>Proceed to Assessment</ProceedButton>
+        <ProceedButton onClick={handleShowAssessment}>
+          Proceed to Assessment
+        </ProceedButton>
       </Container>
     );
   }
 
   if (showAssessment) {
-    return (
-      <Assessment/>
-    );
+    return <Assessment userName={userName} />;
   }
 };
 

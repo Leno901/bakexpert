@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useParams,
+} from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
@@ -8,27 +14,38 @@ import ModulePage from "./components/modules/Modulepage";
 import Vmission from "./components/vmission/VMission";
 import bg from "./assets/image/abstract-bg.jpg";
 import PreTest from "./components/modules/PreTest";
+import GameApp from "./components/game/GameApp"; // Import GameApp
+import games from "./components/game/game"; // Import games data
 
 function App() {
-  const [quizStarted, setQuizStarted] = useState(false); // State to track quiz status
+  const [quizStarted, setQuizStarted] = useState(false);
 
   const handleResetQuiz = () => {
-    setQuizStarted(false); // Reset quiz state
+    setQuizStarted(false);
 
-    // Reset the background style
-    const navlanding = document.querySelectorAll("nav");
-    navlanding.style.background = ""; // Reset additional custom background styles
+    const navlanding = document.querySelector("nav");
+    if (navlanding) navlanding.style.background = ""; // Reset additional custom background styles
   };
 
   useEffect(() => {
     if (!quizStarted) {
-      // Reset the background image to the default
       document.documentElement.style.setProperty(
         "--background-image",
-        `url(${bg})` // Use the imported bg image
+        `url(${bg})`
       );
     }
-  }, [quizStarted]); // Only run when quizStarted changes
+  }, [quizStarted]);
+
+  const GameWrapper = () => {
+    const { slug } = useParams();
+    const game = games.find((game) => game.slug === slug);
+
+    if (!game) {
+      return <div>Game not found!</div>;
+    }
+
+    return <GameApp games={[game]} />;
+  };
 
   return (
     <Router>
@@ -39,7 +56,6 @@ function App() {
           maxHeight: "100vh",
         }}
       >
-        {/* Navigation links */}
         <nav className="nav-landing">
           <ul>
             <li>
@@ -57,10 +73,14 @@ function App() {
                 About
               </Link>
             </li>
+            {/* {games.map((game, index) => (
+              <li key={index}>
+                <Link to={`/game/${game.slug}`}>{game.title}</Link>
+              </li>
+            ))} */}
           </ul>
         </nav>
 
-        {/* Define the routes */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -75,8 +95,8 @@ function App() {
                 setQuizStarted={setQuizStarted}
               />
             }
-          />{" "}
-          {/* Dynamic route for each module */}
+          />
+          <Route path="/game/:slug" element={<GameWrapper />} />
         </Routes>
       </div>
     </Router>
